@@ -1,5 +1,6 @@
 .markdown-body {
     overflow: auto;
+	color: aliceblue !important;
     border-width: 1px;
     border-style: solid;
     border-color: rgb(221, 221, 221);
