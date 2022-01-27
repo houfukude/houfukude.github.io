@@ -1,5 +1,7 @@
 # 关于 Clash
 
+>更新于 2021.11.29 13:31
+
 <font color=orange>**⚠️**</font> Clash需要一定的技术才能正常使用,若无本领请勿死磕
 
 ![Clash](https://i.loli.net/2021/11/29/1dY3rTKAXcijy9L.png)

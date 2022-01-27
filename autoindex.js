@@ -127,7 +127,7 @@ function updateHTMLBody() {
 
 		<footer class="autoindex-footer">
 			<!-- 页脚信息 -->
-			<a class="mdui-float-left  mdui-p-x-2">© 2021 继续傲慢的侯爷</a>
+			<a class="mdui-float-left  mdui-p-x-2">© 2022 继续怠惰的侯爷</a>
 			<a class="mdui-float-right  mdui-p-x-2">嗯~ o(*￣▽￣*)o</a>
 		</footer>
 		<!-- autoindex 注入 -->
