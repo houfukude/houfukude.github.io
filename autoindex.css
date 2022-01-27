@@ -1,0 +1,64 @@
+.markdown-body {
+    overflow: auto;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+    padding: 0px 36px 0px 36px !important;
+	margin: 20px auto;
+	max-width: 800px;
+}
+
+.hide {
+	background-color: #252525;
+	color: #252525;
+	text-shadow: none;
+}
+
+.markdown-body p code {
+    color: greenyellow;
+}
+
+.markdown-body li code {
+    color: greenyellow;
+}
+
+.markdown-selected {
+    background: purple;
+}
+
+.markdown-menu-btn{
+    position: fixed;
+    top: 12px;
+    left: 8px;
+}
+
+.autoindex-container {
+	margin-bottom: 64px;
+}
+
+.autoindex-footer {
+	line-height: 48px;
+	background: #3a3a3a;
+	font-size: 10pt;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+}
+
+#player-layout {
+	width: 290px;
+	position: fixed !important;
+	top: 8px  !important;
+	right: 4%  !important;
+}
+
+#player-close {
+	position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+}
+
+.aplayer-info{
+	background: rebeccapurple !important;
+}

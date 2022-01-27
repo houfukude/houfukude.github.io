@@ -1,4 +1,12 @@
-houfukude.github.io
-===================
+# 小侯博客 (Github 静态页面版)
 
-Something i wanna to tell you
+## 目录
+
+### [clash](index.html?p=clash)
+
+### [openwrt](index.html?p=openwrt)
+
+### [kuaizi](index.html?p=kuaizi)
+
+### [flexget](index.html?p=flexget)
+
