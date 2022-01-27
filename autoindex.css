@@ -1,6 +1,5 @@
-.markdown-body {
+.markdown-body-custom {
     overflow: auto;
-	color: aliceblue !important;
     border-width: 1px;
     border-style: solid;
     border-color: rgb(221, 221, 221);
@@ -16,11 +15,11 @@
 	text-shadow: none;
 }
 
-.markdown-body p code {
+.markdown-body-custom p code {
     color: greenyellow;
 }
 
-.markdown-body li code {
+.markdown-body-custom li code {
     color: greenyellow;
 }
 

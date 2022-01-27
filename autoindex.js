@@ -120,7 +120,7 @@ function updateHTMLBody() {
 			<ul class="mdui-list mdui-list-dense" id="theList">
 			</ul>
 			
-			<div class="markdown-body  mdui-m-x-2">
+			<div class="markdown-body markdown-body-custom mdui-m-x-2">
 				<div id="markDown"></div>
 			</div>
 			<div class="comments-body mdui-m-x-2" id="gitalk-container"></div>
