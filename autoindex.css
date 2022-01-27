@@ -46,6 +46,10 @@
 	bottom: 0;
 }
 
+.comments-body{
+	max-width: 874px;
+}
+
 #player-layout {
 	width: 290px;
 	position: fixed !important;

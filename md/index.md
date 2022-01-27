@@ -18,6 +18,15 @@
 
 本 Blog 内容采用 [markdown](https://markdown.com.cn/basic-syntax/) 进行内容书写
 
+## 目录
+
+### [kuaizi](index.html?p=kuaizi)
+
+### [flexget](index.html?p=flexget)
+
+### [clash](index.html?p=clash)
+
+### [openwrt](index.html?p=openwrt)
 
 
 

@@ -123,9 +123,7 @@ function updateHTMLBody() {
 			<div class="markdown-body  mdui-m-x-2">
 				<div id="markDown"></div>
 			</div>
-			<div class="markdown-body  mdui-m-x-2">
-				<div id="git-comments"></div>
-			</div>
+			<div class="comments-body mdui-m-x-2" id="git-comments"></div>
 		</div>
 
 		<footer class="autoindex-footer">

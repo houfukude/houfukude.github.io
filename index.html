@@ -15,24 +15,20 @@
 	function getQueryString(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 		var r = decodeURI(window.location.search).substr(1).match(reg);
-		if (r != null) return unescape(r[2]); return null;
+		if (r != null) return unescape(r[2]); return 'index';
 	}
 
 	function page() {
 		var page = getQueryString("p");
-		if (!page) {
-			init('MD', 'README.md')
-		} else {
-			init('MD', './md/' + page + '.md')
-		}
+		init('MD', './md/' + page + '.md')
 
 	}
 
 	page()
 
 	var gitment = new Gitment({
-		// id: getQueryString("p"),
-		id: '{{ .Slug }}',  // 可选, 默认为 location.href
+		id: getQueryString("p"),
+		// id: '{{ .Slug }}',  // 可选, 默认为 location.href
 		owner: 'houfukude',
 		repo: 'houfukude.github.io',
 		oauth: {
