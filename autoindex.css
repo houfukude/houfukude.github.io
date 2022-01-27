@@ -4,8 +4,8 @@
     border-style: solid;
     border-color: rgb(221, 221, 221);
     border-image: initial;
-    padding: 0px 36px 0px 36px !important;
-	margin: 20px auto;
+    padding: 0px 16px 0px 16px !important;
+	margin: 16px auto;
 	max-width: 800px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .comments-body{
-	max-width: 874px;
+	max-width: 834px;
 }
 
 #player-layout {
