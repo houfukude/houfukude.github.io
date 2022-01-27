@@ -40,7 +40,7 @@ function init(iput_mode, ...data) {
 		// $$("#title").text(markdownName);
 		// $$("#headerName").text(markdownName);
 		$$(function () {
-			
+
 			convertMarkDown()
 			if (data[1]) {
 				$$('#player-open').attr('onclick', `startPlayMusic('` + data[1] + `','` + data[2] + `','` + data[3] + `');`);
@@ -277,9 +277,9 @@ function menuSelect(id) {
 		leftDrawer.close();
 	}
 
-	console.log(location.pathname + id);
+	console.log(location.pathname + window.location.search + id);
 
-	location.href = location.pathname + id
+	location.href = location.pathname + window.location.search + id
 
 	window.scrollBy(0, - 100);
 
