@@ -60,9 +60,26 @@
 
 >https://t.me/free_apk_share
 
-## 5. 搭建流程(待完善)
+## 5. 运作流程(待完善)
 
 `目前记录一下,在配置过程中我踩过的坑`
+
+大致了解了一下 Repomaker 的工作流程如下
+
+```sequence
+participant Repomaker as R
+participant 文件服务器(SSH Storage) as F
+participant 客户端 as C
+R-->R: 上传APK
+note left of R: 填写描述以及一些截图等
+R-->R: 解析APK
+note over R: 解析获取支持情况
+R-->R: 生成index
+R->>F: 上传源数据
+note over F: 同步完成后Repomaker就可下线了
+C->>F: 拉取源
+C->>F: 下载应用
+```
 
 准备一台远端存储服务器,并配置域名与HTTPS
 

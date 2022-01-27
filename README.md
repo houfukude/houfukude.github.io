@@ -2,6 +2,8 @@
 
 (Github 静态页面版)
 
+http://blog.houfukude.tk/
+
 介于搭建在 GAPPS 的 Blog 因为不知名的原因挂了,迁移博客到 GitHub
 
 先吧这段时间折腾的技术项内容发布了吧
