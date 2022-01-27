@@ -5,8 +5,8 @@
 		background: #303030 !important;
 	}
 </style>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
 <script src="./autoindex.js"></script>
 <!--获取页面之间的传递的参数 -->
@@ -26,18 +26,17 @@
 
 	page()
 
-	var gitment = new Gitment({
-		id: getQueryString("p"),
-		// id: '{{ .Slug }}',  // 可选, 默认为 location.href
-		owner: 'houfukude',
+	var gitalk = new Gitalk({
+		clientID: '9bb1abf537bd0d6fd632',
+		clientSecret: 'be26519f099363b8bdfe8c62adc69dc73425949b',
 		repo: 'houfukude.github.io',
-		oauth: {
-			client_id: '9bb1abf537bd0d6fd632',
-			client_secret: 'be26519f099363b8bdfe8c62adc69dc73425949b',
-		}
+		owner: 'houfukude',
+		admin: ['houfukude'],
+		id: getQueryString("p"),      // Ensure uniqueness and length less than 50
+		distractionFreeMode: false  // Facebook-like distraction free mode
 	})
 
-	gitment.render('git-comments')
+	gitalk.render('gitalk-container')
 </script>
 <link rel="stylesheet" type="text/css" href="./autoindex.css">
 <link rel="stylesheet" type="text/css" href="./github.css">
