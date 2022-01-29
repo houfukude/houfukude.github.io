@@ -1,4 +1,4 @@
-# windows建立符号链接(mklink)
+# windows 建立符号链接(mklink)
 
 >Update: 2014-02-14 15:34:01
 

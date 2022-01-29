@@ -1,4 +1,4 @@
-# Android 7.0 SoundPool踩坑记录
+# Android 7.0 SoundPool 踩坑记录
 
 >Update: 2016-12-28 13:51:50
 
