@@ -1,4 +1,4 @@
-const $$ = mdui.JQ;
+const $$ = mdui.$;
 
 let hasMarkdown = false
 
@@ -120,13 +120,17 @@ function updateHTMLBody() {
 			<ul class="mdui-list mdui-list-dense" id="theList">
 			</ul>
 			
-			<div class="markdown-body markdown-body-custom mdui-m-x-2">
-				<div id="markDown"></div>
+			<div class="markdown-body markdown-body-custom">
+				<div id="markDown" class="mdui-m-x-2"></div>
 			</div>
-			<div class="comments-body mdui-m-x-2" id="gitalk-container"></div>
+			<div class="comments-body mdui-m-x-4" id="gitalk-container"></div>
+			<div class="mdui-divider-light"></div>
+			<div class="mdui-m-x-3 mdui-m-y-2">
+				<span id="busuanzi_container_site_pv" class="pv-body">本站总访问量: <span id="busuanzi_value_site_pv"></span> 次</span>
+			</div>
 		</div>
 
-		<footer class="autoindex-footer">
+		<footer class="autoindex-footer mdui-bottom-nav-scroll-hide">
 			<!-- 页脚信息 -->
 			<a class="mdui-float-left  mdui-p-x-2">© 2022 继续怠惰的侯爷</a>
 			<a class="mdui-float-right  mdui-p-x-2">嗯~ o(*￣▽￣*)o</a>
@@ -451,8 +455,8 @@ function convertMarkDown() {
 				$$("#drawer-title").text(markdownName);
 				$$("#markdown-name").text(markdownName);
 			} else {
-				$$("#headerName").text($$('#markDown').children().text());
-				$$("#title").text($$('#markDown').children().text());
+				$$("#headerName").text($$('#markDown').children().first().text());
+				$$("#title").text($$('#markDown').children().first().text());
 			}
 
 		}

@@ -1,12 +1,6 @@
 .markdown-body-custom {
     overflow: auto;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(221, 221, 221);
-    border-image: initial;
-    padding: 0px 16px 0px 16px !important;
-	margin: 16px auto;
-	max-width: 800px;
+	max-width: 1000px;
 }
 
 .hide {
@@ -47,7 +41,7 @@
 }
 
 .comments-body{
-	max-width: 834px;
+	max-width: 1000px;
 }
 
 #player-layout {

@@ -1,13 +1,15 @@
 ﻿<h1 style="display: none;">no_need_index</h1>
 <!-- mdui and autoindex -->
 <style>
+	/* 初始化时候的深色背景 */
 	body {
 		background: #303030 !important;
 	}
 </style>
-
+<!-- 用gitalk的转圈圈来帮助等待 -->
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+<!-- 需要用到MDUI 中的 jquery 必须前置 -->
+<script src="//cdnjs.loli.net/ajax/libs/mdui/1.0.1/js/mdui.min.js"></script>
 <script src="./autoindex.js"></script>
 <!--获取页面之间的传递的参数 -->
 <script type="text/javascript">
@@ -25,6 +27,10 @@
 	}
 
 	page()
+</script>
+<!-- 基于Github issue 的评论-->
+<!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+<script type="text/javascript">
 
 	var gitalk = new Gitalk({
 		clientID: '9bb1abf537bd0d6fd632',
@@ -38,11 +44,11 @@
 
 	gitalk.render('gitalk-container')
 </script>
+
+<!-- mdui and autoindex -->
 <link rel="stylesheet" type="text/css" href="./autoindex.css">
 <link rel="stylesheet" type="text/css" href="./github.css">
-<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
-<!-- mdui and autoindex -->
-
+<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/1.0.1/css/mdui.min.css">
 <!-- Markdown base -->
 <script src="//cdnjs.loli.net/ajax/libs/marked/0.7.0/marked.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/highlight.js/11.3.1/styles/dark.min.css">
@@ -70,4 +76,6 @@
 <!-- music player -->
 
 <link rel="stylesheet" href="./gitalk.css">
+<!--访问统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- 可以将本文件命名成 index.html 然后扔到目录里 -->
