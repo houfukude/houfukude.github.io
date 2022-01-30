@@ -113,7 +113,7 @@ function updateHTMLBody() {
 		</header>
 
 		<drawer class="mdui-drawer" id="left-drawer">
-			<h1 id="drawer-title" class="mdui-m-x-2">目录</h1>
+			<h1 id="drawer-title" class="mdui-p-x-2">目录</h1>
 		</drawer>
 
 		<div class="mdui-container autoindex-container">
@@ -121,11 +121,13 @@ function updateHTMLBody() {
 			</ul>
 			
 			<div class="markdown-body markdown-body-custom">
-				<div id="markDown" class="mdui-m-x-2"></div>
+				<div id="markDown" class="mdui-p-x-2"></div>
 			</div>
-			<div class="comments-body mdui-m-x-4" id="gitalk-container"></div>
-			<div class="mdui-divider-light"></div>
-			<div class="mdui-m-x-3 mdui-m-y-2">
+			<div class="comments-body mdui-p-x-2">
+				<div id="gitalk-container"></div>
+			</div>
+			<div class="markdown-body-custom mdui-divider-light mdui-m-t-2"></div>
+			<div class="mdui-p-a-2">
 				<span id="busuanzi_container_site_pv" class="pv-body">本站总访问量: <span id="busuanzi_value_site_pv"></span> 次</span>
 			</div>
 		</div>

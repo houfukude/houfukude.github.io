@@ -3,6 +3,12 @@
 	max-width: 1000px;
 }
 
+
+.comments-body{
+	/* body - 16*2 */
+	max-width: 968px;
+}
+
 .hide {
 	background-color: #252525;
 	color: #252525;
@@ -40,9 +46,6 @@
 	bottom: 0;
 }
 
-.comments-body{
-	max-width: 1000px;
-}
 
 #player-layout {
 	width: 290px;
