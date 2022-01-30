@@ -122,14 +122,14 @@ function updateHTMLBody() {
 			
 			<div class="markdown-body markdown-body-custom">
 				<div id="markDown" class="mdui-p-x-2"></div>
+				<div class="markdown-body-custom mdui-divider-light mdui-m-a-2"></div>
+				<div id="copyRight" class="mdui-p-a-2"></div>
 			</div>
 			<div class="comments-body mdui-p-x-2">
 				<div id="gitalk-container"></div>
 			</div>
 			<div class="markdown-body-custom mdui-divider-light mdui-m-t-2"></div>
-			<div class="mdui-p-a-2">
-				<span id="busuanzi_container_site_pv" class="pv-body">本站总访问量: <span id="busuanzi_value_site_pv"></span> 次</span>
-			</div>
+			<div id="pv" class="mdui-p-a-2"></div>
 		</div>
 
 		<footer class="autoindex-footer mdui-bottom-nav-scroll-hide">
@@ -459,10 +459,30 @@ function convertMarkDown() {
 			} else {
 				$$("#headerName").text($$('#markDown').children().first().text());
 				$$("#title").text($$('#markDown').children().first().text());
+				addExtraHtml()
 			}
 
 		}
 	})
+}
+
+function addExtraHtml(){
+	copyRight = 
+	`
+	<span style="color: darkcyan;">
+	版权声明： 本博客所有文章除特别声明外，均采用 
+	<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank">
+		BY-NC-SA 4.0
+	</a> 
+	许可协议。转载请注明出处！
+	</span>
+	`
+	pvHtml = 
+	`
+	<span id="busuanzi_container_site_pv" class="pv-body">本站总访问量: <span id="busuanzi_value_site_pv"></span> 次</span>
+	`
+	$$('#copyRight').append(copyRight)
+	$$('#pv').append(pvHtml)
 }
 
 /**
