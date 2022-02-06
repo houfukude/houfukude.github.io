@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-#!/usr/bin/env python
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 # =================================================
 # Description: 侯爷Blog自动化脚本
 #               1. 更新 index.md
@@ -13,10 +13,10 @@
 # Based on https://gist.github.com/JeffPaine/3145490 with tweaks
 # =================================================
 import argparse
-from cProfile import label
-from genericpath import exists
 import json
 import os
+import time
+import datetime
 from argparse import RawTextHelpFormatter
 from tkinter import E
 
@@ -38,9 +38,10 @@ TOOL = os.environ.get('TOOL')
 # 默认评论所在的 repo
 REPO_NAME = '%s.github.io' % USERNAME
 # repo 的issues API地址
-URL =  'https://api.github.com/repos/%s/%s/issues' % (USERNAME, REPO_NAME)
+URL = 'https://api.github.com/repos/%s/%s/issues' % (USERNAME, REPO_NAME)
 
 session = requests.Session()
+
 
 def init_session():
     """检查 环境变量 和 传入参数"""
@@ -58,7 +59,8 @@ def init_session():
     session.auth = (USERNAME, TOKEN)
     return 0
 
-def find_exist():
+
+def find_online_exist():
     '''找到现在已经存在的评论'''
     response = session.get(URL)
     exist_labels = []
@@ -74,6 +76,7 @@ def find_exist():
     else:
         return []
 
+
 def create_issue(id, title):
     '''创建一个在 USERNAME.github.io 下的 issue 用于启用评论'''
     if not id:
@@ -82,7 +85,7 @@ def create_issue(id, title):
     if not title:
         print('[ERRO] 未传入 title 参数')
         return 1
-    print('[INFO] 开始创建 issue {0:s} '.format(title))
+    # print('[INFO] 开始创建 issue {0:s} '.format(title))
     # 内容
     issue = {'title': '%s 的评论' % title,
              'body': "# %s\nhttps://%s.github.io/index.html?p=%s" % (title, USERNAME, id),
@@ -99,9 +102,7 @@ def create_issue(id, title):
         return 1
 
 
-
-
-def find_articles():
+def find_local_articles():
     '''在本地遍历 md 目录 寻找最新的文章'''
     for root, ds, fs in os.walk("./md/"):
         for f in fs:
@@ -109,7 +110,11 @@ def find_articles():
                 fullname = os.path.join(root, f)
                 id = f.removesuffix(".md")
                 title = read_title(fullname)
-                yield {"id": id, "title": title}
+                modifytime = time.ctime(os.path.getmtime(fullname))
+                modifytime = datetime.datetime.strptime(
+                    modifytime, '%a %b %d %H:%M:%S %Y')
+                modifytime.strftime("%m/%d/%Y")
+                yield {"id": id, "title": title, "modifytime": modifytime}
 
 
 def read_title(filename):
@@ -117,6 +122,27 @@ def read_title(filename):
     with open(filename, "r", encoding='utf-8') as file:
         title = file.readline()
         return title.removeprefix("# ").removesuffix("\n")
+
+
+def update_index(article):
+    '''读取 index 替换指定标签下的文章'''
+    # 必须在index.md中存在
+    REPLACE_TAG = "<!--ARTICLE-->\n\n"
+    #
+    print("[INFO] 发现新文章: %s 标题为: %s 修改时间: %s" %
+          (article['id'], article['title'], article['modifytime']))
+    # MARKDWON 格式的标题参数
+    insert_info = "## [%s](index.html?p=%s) \n%s\n\n" % (
+        article['title'], article['id'], article['modifytime'])
+    # 读取 index.md
+    content = ""
+    with open("./md/index.md", "r", encoding='utf-8') as file:
+        content = file.read()
+    # 替换
+    content = content.replace(REPLACE_TAG, REPLACE_TAG + insert_info)
+    # 写入 index.md
+    with open("./md/index.md", "w", encoding='utf-8') as file:
+        file.write(content)
 
 
 if __name__ == "__main__":
@@ -132,8 +158,10 @@ if __name__ == "__main__":
     #     result = create_issue(args.id, args.title)
     #     exit(result)
     init_session()
-    exist_labels = find_exist()
-    for i in find_articles():
-        if i['id'] not in exist_labels:
-            print("[INFO] 发现新文章: %s 标题为: %s" % (i['id'], i['title']))
-            create_issue(i['id'], i['title'])
+    exist_labels = find_online_exist()
+    for article in find_local_articles():
+        if article['id'] not in exist_labels:
+            print("[INFO] 发现新文章: %s 标题为: %s" %
+                  (article['id'], article['title']))
+            update_index(article)
+            create_issue(article['id'], article['title'])
