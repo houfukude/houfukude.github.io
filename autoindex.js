@@ -466,9 +466,9 @@ function convertMarkDown() {
 	})
 }
 
-function addExtraHtml(){
-	copyRight = 
-	`
+function addExtraHtml() {
+	copyRight =
+		`
 	<span style="color: darkcyan;">
 	版权声明： 本博客所有文章除特别声明外，均采用 
 	<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank">
@@ -477,8 +477,8 @@ function addExtraHtml(){
 	许可协议。转载请注明出处！
 	</span>
 	`
-	pvHtml = 
-	`
+	pvHtml =
+		`
 	<span id="busuanzi_container_site_pv" class="pv-body">本站总访问量: <span id="busuanzi_value_site_pv"></span> 次</span>
 	`
 	$$('#copyRight').append(copyRight)
