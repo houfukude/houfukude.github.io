@@ -93,6 +93,7 @@ function updateHTMLBody() {
 		<meta name="viewport" content="width=device-width">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="description" content="autoindex.js 自动注入"">
+		<meta name="google-site-verification" content="EyTM-xT6c_hVlrHBCvSX3osnfGPCLN1zg_mTBgWf0FM" />
 	`)
 
 	$$('body').append(`
