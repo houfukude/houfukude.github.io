@@ -11,6 +11,7 @@
 # Usage:
 # 	./pre-commit.py --id="Test" --title="Hello And Die"
 # Based on https://gist.github.com/JeffPaine/3145490 with tweaks
+# Based on https://github.com/zhaoolee/WordPressXMLRPCTools/issues
 # =================================================
 import argparse
 import json

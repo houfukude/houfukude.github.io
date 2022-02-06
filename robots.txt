@@ -1,0 +1,5 @@
+User-agent: *
+User-agent: Googlebot
+User-agent: Googlebot-Mobile
+User-agent: Baiduspider-mobile
+Disallow: /md/
