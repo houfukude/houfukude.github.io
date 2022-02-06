@@ -9,9 +9,9 @@
 # Author: houfukude@gmail.com
 # Blog: https://blog.houfukude.tk/
 # Usage:
-# 	./pre-commit.py --id="Test" --title="Hello And Die"
+# 	./pre-commit.py
 # Based on https://gist.github.com/JeffPaine/3145490 with tweaks
-# Based on https://github.com/zhaoolee/WordPressXMLRPCTools/issues
+# Based on https://github.com/zhaoolee/WordPressXMLRPCTools
 # =================================================
 import argparse
 import json
@@ -29,7 +29,7 @@ load_dotenv()
 USAGE = """侯爷的Blog自动化脚本
 通过指定 id 和 title 自动创建 github issue
 用法:
-    ./pre-commit.py --id="Test" --title="Hello And Die"
+    ./pre-commit.py
 """
 
 USERNAME = os.environ.get('GITHUB_USER')
@@ -130,7 +130,7 @@ def update_index(article):
     # 必须在index.md中存在
     REPLACE_TAG = "<!--ARTICLE-->\n\n"
     #
-    print("[INFO] 发现新文章: %s 标题为: %s 修改时间: %s" %
+    print("[INFO] 更新 index 文章: %s 标题为: %s 修改时间: %s" %
           (article['id'], article['title'], article['modifytime']))
     # MARKDWON 格式的标题参数
     insert_info = "## [%s](index.html?p=%s) \n%s\n\n" % (

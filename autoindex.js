@@ -208,7 +208,7 @@ function startPlayMusic(url, name, cover) {
 		cover = url.replace(/[^/]+$/, '') + coverName
 	}
 	$$('#player-open').hide();
-	console.log("[MUSIC]: ", url, name, cover);
+	// console.log("[MUSIC]: ", url, name, cover);
 	// TODO 不要重复初始化
 	const musicPlayer = new APlayer({
 		container: document.getElementById('aplayer'),
@@ -484,6 +484,16 @@ function addExtraHtml() {
 	`
 	$$('#copyRight').append(copyRight)
 	$$('#pv').append(pvHtml)
+
+	// 自定义的 media 进行播放器初始化
+	let medias = $$('media')
+	if (medias.length > 0) {
+		url = medias[0].attributes.src.value
+		// console.log(url)
+		$$('#player-open').attr('onclick', `startPlayMusic('` + url + `');`);
+		startPlayMusic(url)
+	}
+
 }
 
 /**
