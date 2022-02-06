@@ -42,9 +42,11 @@ Windows Phone的软件还差很多可玩性啊，不过基本的应用程序还�
     ![houfukudeimg.appspot.jpg](https://s2.loli.net/2022/01/28/pvTyaYgfZCumJVs.jpg)
 
 1. nokia投影仪，直接把手机屏幕显示的内容投影到其他设备的浏览器上，效果还是很不错的。
+    
     ![houfukudeimg.appspot.jpg](https://s2.loli.net/2022/01/28/jBfy7x4zIwEvWbt.jpg)
 
 1. 自带壁纸，嗯！微软是最好的壁纸公司没有之一！
+    
     ![houfukudeimg.appspot.jpg](https://s2.loli.net/2022/01/28/JsP1izB9Qwp6vou.jpg)
 
 1. 特色功能，双击点亮，自带防火墙，流量统计，来电显示...还有那一系列的nokia软件，都还是很精致的。
