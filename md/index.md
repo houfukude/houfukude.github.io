@@ -29,6 +29,9 @@
 <!--add new article here 通过标识符 `ARTICLE` 自动识别-->
 <!--ARTICLE-->
 
+## [移动合家亲 SDK 接入流程](index.html?p=andlink) 
+2022-03-07 21:06:37
+
 ## [关于本博客](index.html?p=AboutMe)
 
 2022-02-06 20:39:24
