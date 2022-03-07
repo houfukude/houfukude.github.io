@@ -40,7 +40,7 @@ function init(iput_mode, ...data) {
 		// $$("#title").text(markdownName);
 		// $$("#headerName").text(markdownName);
 		$$(function () {
-			if (markdownName.endsWith("/_index.md")) {
+			if (markdownName.endsWith("/index.md")) {
 				$$('#arrow_back').hide()
 			} else {
 				$$('#drawer-title').hide()
@@ -108,7 +108,7 @@ function updateHTMLBody() {
 				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'powered by Houfukude'}">
 					<i class="mdui-text-color-red mdui-icon material-icons">favorite</i>
 				</a>
-				<a href="/index.html?p=_links" class="mdui-btn" mdui-tooltip="{content: '友情链接'}">
+				<a href="/index.html?p=links" class="mdui-btn" mdui-tooltip="{content: '友情链接'}">
 					<i class="mdui-text-color-orange mdui-icon material-icons">collections_bookmark</i>
 					友情链接
 				</a>
