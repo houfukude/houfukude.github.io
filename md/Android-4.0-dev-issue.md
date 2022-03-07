@@ -1,8 +1,8 @@
 # Android 4.0 以上开发注意事项
 
->Update: 2013-01-30 00:21:51
+> Update: 2013-01-30 00:21:51
 
-在android 4.0上运行时报<font color=red>android.os.NetworkOnMainThreadException</font>异常
+在 android 4.0 上运行时报<font color=red>android.os.NetworkOnMainThreadException</font>异常
 
 问题描述：
 
@@ -10,7 +10,7 @@
 
 # 解决：
 
-## 方法1：在主线程增加如下代码
+## 方法 1：在主线程增加如下代码
 
 ```
 // 详见StrictMode文档
@@ -27,8 +27,8 @@ StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
         .penaltyDeath()
         .build());
 ```
-    
-## 方法2：启动线程执行网络任务
+
+## 方法 2：启动线程执行网络任务
 
 ```
         super.onCreate(savedInstanceState);
@@ -50,6 +50,6 @@ Runnable NetworkRun = new Runnable(){
 };
 ```
 
->Update: 2022.01.28
+> Update: 2022.01.28
 
 又是一篇已经过时的文章

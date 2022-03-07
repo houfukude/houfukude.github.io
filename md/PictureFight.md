@@ -1,8 +1,8 @@
 # 动图表情包
 
->Update: 2017-02-16 00:41:27
+> Update: 2017-02-16 00:41:27
 
-    这是一个斗图的时代。  
+    这是一个斗图的时代。
     一群人通过图片来表达自己的想法。
 
 欢迎使用 **动图表情包**~
@@ -11,17 +11,17 @@
 
 [![playIcon](https://s2.loli.net/2022/01/28/BgTHZGDpwiVd7b4.png)](https://play.google.com/store/apps/details?id=tk.houfukude.picturefight)
 
->PS 已因为一些版权和敏感信息下架
+> PS 已因为一些版权和敏感信息下架
 
-## 同时也可以通过酷安市场APP端进行下载
+## 同时也可以通过酷安市场 APP 端进行下载
 
 ## [动图表情包](http://www.coolapk.com/apk/tk.houfukude.picturefight)
 
->PS 已因为开发者没实名认证下架
+> PS 已因为开发者没实名认证下架
 
-## 采用最新的google设计理念
+## 采用最新的 google 设计理念
 
-## 纯正的Material Design（笑
+## 纯正的 Material Design（笑
 
 ## 功能还很简单 暂时 beta 版本
 
@@ -29,22 +29,21 @@
 
 # 支持
 
-
 Android 4.0.3 以上的系统
 
 ## 使用说明
 
-*   不产生任何垃圾目录
-*   记录下载历史
-*   **设置** 页面 ，有节约流量模式
+-   不产生任何垃圾目录
+-   记录下载历史
+-   **设置** 页面 ，有节约流量模式
 
 ## 已知 Bug
 
-* 暂无
+-   暂无
 
->update 2017年2月15日
+> update 2017 年 2 月 15 日
 
-* V1.1版本上传酷安
+-   V1.1 版本上传酷安
 
 ## Thanks 感谢以下开源项目
 

@@ -1,22 +1,22 @@
 # 筷子平台接口文档
 
->更新于 2020.2.5 00:00
+> 更新于 2020.2.5 00:00
 
 version 0.1(超级先行预览版)
 
-* 本文档基于 MarkDown 语法编写，方便版本更迭.
+-   本文档基于 MarkDown 语法编写，方便版本更迭.
 
-* 本文档中的 `<TIME>` 如无特殊说明格式均为 "`yyyy-MM-dd HH:mm:ss`"
+-   本文档中的 `<TIME>` 如无特殊说明格式均为 "`yyyy-MM-dd HH:mm:ss`"
 
-* 本文档中的 `<FILE>` 如无特殊说明均为HTTP表单请求发送文件
+-   本文档中的 `<FILE>` 如无特殊说明均为 HTTP 表单请求发送文件
 
-* 本文档描述的接口如无特殊说明，均使用 `<TOKEN>` 进行授权判断。
+-   本文档描述的接口如无特殊说明，均使用 `<TOKEN>` 进行授权判断。
 
-* 密码在传输前使用 `MD5` 进行加密，`MD5` 加密使用32位小写字母。
+-   密码在传输前使用 `MD5` 进行加密，`MD5` 加密使用 32 位小写字母。
 
-* 本文档中的 `返回信息` 中 `code` 0：正常，其他值表示错误
+-   本文档中的 `返回信息` 中 `code` 0：正常，其他值表示错误
 
-* JSON数据最外层结构
+-   JSON 数据最外层结构
 
 ```json
 {
@@ -29,28 +29,28 @@ version 0.1(超级先行预览版)
 }
 ```
 
-* 本文档所有的带`LIST`后缀的列表均采用 `offset` 和 `limit` 进行分页和分页大小处理，默认省缺值为 `offset=0` 和 `limit=20`
+-   本文档所有的带`LIST`后缀的列表均采用 `offset` 和 `limit` 进行分页和分页大小处理，默认省缺值为 `offset=0` 和 `limit=20`
 
-* 本文档所有接口,如无特殊说明,统一`UTF-8`的编码方式传输数据
+-   本文档所有接口,如无特殊说明,统一`UTF-8`的编码方式传输数据
 
-* 名词解释
+-   名词解释
 
-| 角色定义（role）    | 描述                       |
-| --------          | -------------------------- |
-| buyer             | 进行下单操作的用户
-| seller            | 发布商品的用户
-| attendant         | 进行提供各类服务的用户
-| staff_auditor     | 后台审核人员
-| staff_finance     | 后台财务人员
+| 角色定义（role） | 描述                   |
+| ---------------- | ---------------------- |
+| buyer            | 进行下单操作的用户     |
+| seller           | 发布商品的用户         |
+| attendant        | 进行提供各类服务的用户 |
+| staff_auditor    | 后台审核人员           |
+| staff_finance    | 后台财务人员           |
 
 <font color=orange>**⚠️ 注意**</font>
 手机号为平台唯一标示，同一个账户（手机号）可以同时拥有多个角色
 
-| 订单定义           | 描述                       |
-| --------          | -------------------------- |
-| order             | 商品订单，商家发布的商品，由买家进行下单所产生的订单
-| ticket            | 服务工单，商品订单行进到一定阶段，由系统对应生成的工单
-| wechat            | 微信订单，商品、会员在微信支付时产生的支付单
+| 订单定义 | 描述                                                   |
+| -------- | ------------------------------------------------------ |
+| order    | 商品订单，商家发布的商品，由买家进行下单所产生的订单   |
+| ticket   | 服务工单，商品订单行进到一定阶段，由系统对应生成的工单 |
+| wechat   | 微信订单，商品、会员在微信支付时产生的支付单           |
 
 # 0. 通用模块
 
@@ -58,21 +58,21 @@ version 0.1(超级先行预览版)
 
     统一的单文件上传接口，通过表单提交（非 json），获取完整的文件地址 （包括图片）
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/Base/Upload`
 
-REQUEST 
+REQUEST
 
     file
 
-RESPONSE 
+RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
-    data:     
+    data:
     {
         name:"1.jpg",
         url: "https://example.com/xxxx/1.jpg"
@@ -80,35 +80,34 @@ RESPONSE
 }
 ```
 
-
 ## 0.2. 微信注册
 
     通过当前URL 获取微信的注册授权 通过openID  用于微信内 扫码 支付 和 登录等操作
 
-<font color=green>**ℹ️帮助**</font> 
-[如何获取OpenId](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html)
+<font color=green>**ℹ️ 帮助**</font>
+[如何获取 OpenId](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html)
 
-TYPE `GET` 
+TYPE `GET`
 
 > `/Base/Wxjssdk`
 
-REQUEST 
+REQUEST
 
-``` JSON
+```JSON
 {
     // 当前页面URL
     URL: "https://example.com/buyer/home",
 }
 ```
 
-RESPONSE 
+RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
-    data:     
-    {   
+    data:
+    {
         // 公众号的唯一标识
         appId:"app001",
         // 生成签名的时间戳
@@ -125,13 +124,13 @@ RESPONSE
 
     通过内部订单号获取签名后的商品信息用于微信发起支付 包括 订单商品 和 会员商品
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/Base/wechatOrder`
 
-REQUEST 
+REQUEST
 
-``` JSON
+```JSON
 {
     // 商品编号
     SN: "https://example.com/buyer/home",
@@ -146,37 +145,36 @@ REQUEST
     code: 0,
     // 错误信息
     message: "success",
-    // 微信 getBrandWCPayRequest 需要的字段 
+    // 微信 getBrandWCPayRequest 需要的字段
     data: {[WECHAT_PAY]}
 }
 ```
 
-<font color=green>**ℹ️帮助**</font>
-`WECHAT_PAY` 字段可以参考 [微信内H5调起支付](https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&index=6)
-
+<font color=green>**ℹ️ 帮助**</font>
+`WECHAT_PAY` 字段可以参考 [微信内 H5 调起支付](https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&index=6)
 
 ## 0.4 发送登录码
 
     通过手机号申请一次短信验证 用于 登录注册
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/User/LoginCode`
 
-REQUEST 
+REQUEST
 
-``` JSON
+```JSON
 {
     // 登录角色
     role: "buyer",
-    // 用户手机号 
+    // 用户手机号
     phone: "15999999999",
 }
 ```
 
-RESPONSE 
+RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
@@ -186,36 +184,36 @@ RESPONSE
 
 ## 0.4 发送验证码
 
-    通过用户ID申请一次短信验证 用于 提现修改密码等敏感操作 
+    通过用户ID申请一次短信验证 用于 提现修改密码等敏感操作
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/User/VerifyCode`
 
-REQUEST 
+REQUEST
 
-``` JSON
+```JSON
 {
     // 登录角色
     role: "buyer",
-    // 用户手机号 
+    // 用户手机号
     phone: "15999999999",
-    // 短信类型 （见如下表格） 
+    // 短信类型 （见如下表格）
     action: 100
 }
 ```
 
-| 短信编号  | 短信类型           | 描述                       |
-| -------- | --------          | -------------------------- |
-| 100      | password          | 修改密码
-| 200      | withdraw          | 提现
-| 300      | bindcard          | 绑定银行卡
+| 短信编号 | 短信类型 | 描述       |
+| -------- | -------- | ---------- |
+| 100      | password | 修改密码   |
+| 200      | withdraw | 提现       |
+| 300      | bindcard | 绑定银行卡 |
 
-<font color=red>**⚠️ 待完善**</font> 
+<font color=red>**⚠️ 待完善**</font>
 
-RESPONSE 
+RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
@@ -229,32 +227,32 @@ RESPONSE
 
     通过账号+短信验证码 老用户登录 新用户注册 并获取用户授权
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/User/Login`
 
-REQUEST 
+REQUEST
 
-``` JSON
+```JSON
 {
     // 登录角色
     role: "buyer",
-    // 用户手机号 
+    // 用户手机号
     phone: "15999999999",
     // 短信验证码
-    smsCode: "398483"  
+    smsCode: "398483"
     // 邀请信息
     invate: "159xxxx"
 }
 ```
 
-RESPONSE 
+RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
-    data: 
+    data:
     {
         token: ""
     },
@@ -265,16 +263,14 @@ RESPONSE
 
     获取微信用户绑定的手机号并登录
 
-<font color=green>**ℹ️帮助**</font>
+<font color=green>**ℹ️ 帮助**</font>
 微信内 [手机号获取](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html)
-
-
 
 ## 1.2. 用户信息
 
     用户获取自己的个人信息
 
-TYPE `GET` 
+TYPE `GET`
 
 > `/User/Info`
 
@@ -284,11 +280,11 @@ REQUEST
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
-    data: 
+    data:
     {
         // 用户ID
         id: "kzuser001",
@@ -309,13 +305,13 @@ RESPONSE
 
     对用户信息进行指定字段更新
 
-TYPE `PATCH` 
+TYPE `PATCH`
 
 > `/User/Info`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 更新字段  详情见下图
     attr: "nickname",
@@ -324,16 +320,16 @@ REQUEST
 }
 ```
 
-| 更新字段 （ attr ） | 描述                       |
-| --------          | -------------------------- |
-| nickname          | 用户昵称
-| avatar            | 用户头像
+| 更新字段 （ attr ） | 描述     |
+| ------------------- | -------- |
+| nickname            | 用户昵称 |
+| avatar              | 用户头像 |
 
 <font color=red>**⚠️ 待完善**</font>
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
@@ -355,11 +351,11 @@ REQUEST
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
-    data: 
+    data:
     {
         // 总可提现佣金
         withdrawable: "2520.56",
@@ -383,7 +379,7 @@ TYPE `GET`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 查询角色
     role: "buyer",
@@ -393,12 +389,12 @@ REQUEST
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
     // 列表数据
-    data: 
+    data:
     [
         {
             // 记录编号
@@ -424,7 +420,7 @@ TYPE `POST`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 发起金额
     amount: "300"
@@ -435,13 +431,14 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: ""
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": ""
 }
 ```
+
 ## 1.7. 查询银行卡
 
     用户查询当前名下绑定的银行卡信息（不分角色）
@@ -462,7 +459,7 @@ RESPONSE
     code: 0,
     // 错误信息
     message: "success",
-    data: 
+    data:
     {
         // 真实姓名
         realname: "",
@@ -486,7 +483,7 @@ TYPE `POST`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 真实姓名
     realname: "",
@@ -503,11 +500,11 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: ""
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": ""
 }
 ```
 
@@ -521,20 +518,20 @@ TYPE `GET`
 
 REQUEST
 
-``` JSON
+```JSON
 {
-    // 提现状态 
+    // 提现状态
     status: "0",
     // 分页参数
 }
 ```
 
-| 提现状态 （status） | 描述                       |
-| --------          | -------------------------- |
-| 0                 | 全部记录
-| 1                 | 提现中
-| 2                 | 提现成功
-| 3                 | 提现失败
+| 提现状态 （status） | 描述     |
+| ------------------- | -------- |
+| 0                   | 全部记录 |
+| 1                   | 提现中   |
+| 2                   | 提现成功 |
+| 3                   | 提现失败 |
 
 RESPONSE
 
@@ -544,7 +541,7 @@ RESPONSE
     code: 0,
     // 错误信息
     message: "success",
-    data: 
+    data:
     [
         {
             // 记录的id
@@ -564,8 +561,7 @@ RESPONSE
 
 ## 1.9. 邀请记录
 
-    获取当前用户作为买家邀请的好友列表 
-
+    获取当前用户作为买家邀请的好友列表
 
 TYPE `GET`
 
@@ -573,7 +569,7 @@ TYPE `GET`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 关键字 （关键字搜索？没时间先不做）
     keywords: "",
@@ -585,28 +581,26 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: 
-    [
-        {
-            // 记录的id
-            id: 001,
-            // 用户头像
-            avatar: "",
-            // 用户昵称
-            nickname: "",
-            // 用户等级
-            level: 0,
-            // 邀请时间
-            time: "<TIME>",
-        }
-    ]
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": [
+		{
+			// 记录的id
+			"id": 001,
+			// 用户头像
+			"avatar": "",
+			// 用户昵称
+			"nickname": "",
+			// 用户等级
+			"level": 0,
+			// 邀请时间
+			"time": "<TIME>"
+		}
+	]
 }
 ```
-
 
 # 2. 商品模块
 
@@ -626,31 +620,30 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: 
-    [
-        {
-            // 商品的id
-            id: 001,
-            // 商品名称
-            name: "",
-            // 商品描述
-            desc: "",
-            // 商品库存
-            stock: 500,
-            // 商品意向金
-            price:"",
-            // 商品展示图片
-            imageList: "",
-            // 商品分类
-            category: "",
-            // 发布时间
-            time: "<TIME>",
-        }
-    ]
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": [
+		{
+			// 商品的id
+			"id": 001,
+			// 商品名称
+			"name": "",
+			// 商品描述
+			"desc": "",
+			// 商品库存
+			"stock": 500,
+			// 商品意向金
+			"price": "",
+			// 商品展示图片
+			"imageList": "",
+			// 商品分类
+			"category": "",
+			// 发布时间
+			"time": "<TIME>"
+		}
+	]
 }
 ```
 
@@ -670,23 +663,20 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: 
-    [
-        {   
-            // 分类 id
-            id:"",
-            // 分类名称
-            name:""
-        }
-    ]
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": [
+		{
+			// 分类 id
+			"id": "",
+			// 分类名称
+			"name": ""
+		}
+	]
 }
 ```
-
-
 
 ## 2.3. 商品搜索
 
@@ -698,7 +688,7 @@ TYPE `GET`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 关键字 （关键字搜索？没时间先不做）
     keywords: "",
@@ -712,38 +702,36 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: 
-    [
-        {
-            // 商品的id
-            id: 001,
-            // 商品名称
-            name: "",
-            // 商品描述
-            desc: "",
-            // 商品库存
-            stock: 500,
-            // 商品意向金
-            price:"",
-            // 商品展示图片
-            imageList: "",
-            // 商品分类
-            category: "",
-            // 发布时间
-            time: "<TIME>",
-        }
-    ]
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": [
+		{
+			// 商品的id
+			"id": 001,
+			// 商品名称
+			"name": "",
+			// 商品描述
+			"desc": "",
+			// 商品库存
+			"stock": 500,
+			// 商品意向金
+			"price": "",
+			// 商品展示图片
+			"imageList": "",
+			// 商品分类
+			"category": "",
+			// 发布时间
+			"time": "<TIME>"
+		}
+	]
 }
 ```
 
 ## 2.4. 收藏列表
 
     用户（买家）收藏的商品列表
-
 
 TYPE `GET`
 
@@ -757,31 +745,30 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: 
-    [
-        {
-            // 商品的id
-            id: 001,
-            // 商品名称
-            name: "",
-            // 商品描述
-            desc: "",
-            // 商品库存
-            stock: 500,
-            // 商品意向金
-            price:"",
-            // 商品展示图片
-            imageList: "",
-            // 商品分类
-            category: "",
-            // 发布时间
-            time: "<TIME>",
-        }
-    ]
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": [
+		{
+			// 商品的id
+			"id": 001,
+			// 商品名称
+			"name": "",
+			// 商品描述
+			"desc": "",
+			// 商品库存
+			"stock": 500,
+			// 商品意向金
+			"price": "",
+			// 商品展示图片
+			"imageList": "",
+			// 商品分类
+			"category": "",
+			// 发布时间
+			"time": "<TIME>"
+		}
+	]
 }
 ```
 
@@ -795,29 +782,29 @@ TYPE `POST`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 商品id
     id: "",
-    // 操作类型 
+    // 操作类型
     action: "add"
 }
 ```
 
-| 操作类型 ( action )| 描述                       |
-| ----------------- | -------------------------- |
-| add               | 添加收藏
-| del               | 删除收藏
+| 操作类型 ( action ) | 描述     |
+| ------------------- | -------- |
+| add                 | 添加收藏 |
+| del                 | 删除收藏 |
 
 RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: ""
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": ""
 }
 ```
 
@@ -831,8 +818,7 @@ TYPE `GET`
 
 REQUEST
 
-
-``` JSON
+```JSON
 {
     // 商品id
     id: "",
@@ -843,29 +829,28 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: 
-    {
-        // 商品的id
-        id: 001,
-        // 商品名称
-        name: "",
-        // 商品描述
-        desc: "",
-        // 商品库存
-        stock: 500,
-        // 商品意向金
-        price:"",
-        // 商品展示图片
-        imageList: "",
-        // 商品分类
-        category: "",
-        // 发布时间
-        time: "<TIME>",
-    }
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": {
+		// 商品的id
+		"id": 001,
+		// 商品名称
+		"name": "",
+		// 商品描述
+		"desc": "",
+		// 商品库存
+		"stock": 500,
+		// 商品意向金
+		"price": "",
+		// 商品展示图片
+		"imageList": "",
+		// 商品分类
+		"category": "",
+		// 发布时间
+		"time": "<TIME>"
+	}
 }
 ```
 
@@ -879,7 +864,7 @@ TYPE `POST`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 商品名称
     name: "",
@@ -900,11 +885,11 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: ""
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": ""
 }
 ```
 
@@ -918,19 +903,19 @@ TYPE `POST`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 商品id
     id: "",
-    // 操作类型 
+    // 操作类型
     action: "on_sele"
 }
 ```
 
-| 操作类型 ( action )| 描述                       |
-| ----------------- | -------------------------- |
-| on_sele           | 上架
-| take_off          | 下架
+| 操作类型 ( action ) | 描述 |
+| ------------------- | ---- |
+| on_sele             | 上架 |
+| take_off            | 下架 |
 
 <font color=orange>**⚠️ 注意**</font>
 当商品的库存为 0（`stock = 0`）的时候 商品会自动进行下架处理，并无法再次上架
@@ -939,11 +924,11 @@ RESPONSE
 
 ```json
 {
-    // 错误码
-    code: 0,
-    // 错误信息
-    message: "success",
-    data: ""
+	// 错误码
+	"code": 0,
+	// 错误信息
+	"message": "success",
+	"data": ""
 }
 ```
 
@@ -957,7 +942,7 @@ TYPE `GET`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 状态参数
     status: "",
@@ -975,7 +960,7 @@ RESPONSE
     code: 0,
     // 错误信息
     message: "success",
-    data: 
+    data:
     [
         {
             // 商品的id
@@ -1003,10 +988,10 @@ RESPONSE
 
 # 3. 订单模块
 
-<font color=green>**ℹ️帮助**</font>
+<font color=green>**ℹ️ 帮助**</font>
 订单状态流转图
 
-``` flow
+```flow
 user=>start: 买家:填写信息下单
 
 s001=>parallel: 待付款[状态1]
@@ -1030,6 +1015,7 @@ s002(path1,bottom)->ticket->s004
 
 
 ```
+
 <!--
 // 隐藏的部分流程
 
@@ -1038,29 +1024,29 @@ sellercancel->s005
 s005(path1,bottom)->refund->s006
 
 -->
+
 <font color=orange>**⚠️ 注意**</font>
-任何状态下后台都可以强制终止流程，订单状态：`异常终止[状态7]` 
+任何状态下后台都可以强制终止流程，订单状态：`异常终止[状态7]`
 
-
-| 订单状态 （status） | 描述                       |
-| --------          | -------------------------- |
-| 1                 | 待付款
-| 2                 | 进行中
-| 3                 | 已取消
-| 4                 | 已完成
-| 7                 | 异常终止
+| 订单状态 （status） | 描述     |
+| ------------------- | -------- |
+| 1                   | 待付款   |
+| 2                   | 进行中   |
+| 3                   | 已取消   |
+| 4                   | 已完成   |
+| 7                   | 异常终止 |
 
 ## 3.1. 买家下单
 
     买家通过商品详情页面进行下单操作
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/Order/Create`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 商品id
     id: "",
@@ -1070,16 +1056,16 @@ REQUEST
     name: "",
 }
 
-``` 
+```
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
-    data:     
-    {   
+    data:
+    {
         // 生成的订单编号，一般用于意向金支付
         orderId:"order00021314",
     }
@@ -1095,13 +1081,13 @@ RESPONSE
 
     status 1->3 未付款的订单被买家主动取消
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/Order/Status`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 订单Id
     orderId: "",
@@ -1109,11 +1095,11 @@ REQUEST
     status: "3",
 }
 
-``` 
+```
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
@@ -1125,13 +1111,13 @@ RESPONSE
 
     通过传入角色（ buyer seller） 获取买家订单和卖家订单 带关键字搜索
 
-TYPE `GET` 
+TYPE `GET`
 
 > `/Order/List`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 查询订单的角色
     role: "buyer",
@@ -1140,11 +1126,11 @@ REQUEST
     // 分页参数
 }
 
-``` 
+```
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
@@ -1159,7 +1145,7 @@ RESPONSE
             status:"",
             // 商品信息
             goods:
-            {   
+            {
                 //商品ID
                 id:""
                 //商品的其他信息
@@ -1167,30 +1153,29 @@ RESPONSE
             // 卖家信息
             seller:
             {
-                
+
             },
             // 买家信息
             buyer:
             {
-                
+
             },
         }
     ]
 }
 ```
 
-
 ## 3.4. 订单详情
 
     通过传入角色（ buyer seller） + 订单ID（orderId） 获取订单的详情
 
-TYPE `GET` 
+TYPE `GET`
 
 > `/Order/Detail`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 查询订单的角色
     role: "buyer",
@@ -1198,11 +1183,11 @@ REQUEST
     orderid: "",
 }
 
-``` 
+```
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
@@ -1216,7 +1201,7 @@ RESPONSE
         status:"",
         // 商品信息
         goods:
-        {   
+        {
             //商品ID
             id:""
             //商品的其他信息
@@ -1224,7 +1209,7 @@ RESPONSE
         // 卖家信息
         seller:
         {
-            
+
         },
         // 买家信息
         buyer:
@@ -1244,9 +1229,9 @@ RESPONSE
 
     买家对已完成对订单进行评价
 
-<font color=red>**⚠️ 第一阶段不需要实现**</font> 
+<font color=red>**⚠️ 第一阶段不需要实现**</font>
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/Order/Comment`
 
@@ -1256,13 +1241,13 @@ TYPE `POST`
 
     通过传入角色（seller attendant） 获取卖家工单和服务商工单 带关键字搜索
 
-TYPE `GET` 
+TYPE `GET`
 
 > `/Ticket/List`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 查询工单的角色
     role: "seller",
@@ -1271,11 +1256,11 @@ REQUEST
     // 分页参数
 }
 
-``` 
+```
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
@@ -1291,7 +1276,7 @@ RESPONSE
             // 工单所属流程Id
             belong:"",
             // 工单当前的步骤
-            step: 
+            step:
             {
                 // 当前步骤id
                 id: "",
@@ -1300,7 +1285,7 @@ RESPONSE
             },
             // 对应的订单信息
             order:
-            {   
+            {
                 //订单Id
                 id:""
                 //商品的其他信息
@@ -1314,13 +1299,13 @@ RESPONSE
 
     通过订单ID（ticketId） 获取订单的详情
 
-TYPE `GET` 
+TYPE `GET`
 
 > `/Ticket/Detail`
 
 REQUEST
 
-``` JSON
+```JSON
 {
     // 查询工单的角色
     role: "seller",
@@ -1328,11 +1313,11 @@ REQUEST
     orderid: "",
 }
 
-``` 
+```
 
 RESPONSE
 
-``` JSON
+```JSON
 {
     code: 0,
     message: "success",
@@ -1347,7 +1332,7 @@ RESPONSE
         // 工单所属流程Id
         belong:"",
         // 工单的所有步骤记录
-        steps: 
+        steps:
        [
             {
                 // 当前步骤id
@@ -1366,7 +1351,7 @@ RESPONSE
         ],
         // 对应的订单信息
         order:
-        {   
+        {
             //订单Id
             id:""
             //商品的其他信息
@@ -1379,26 +1364,21 @@ RESPONSE
 
     当前账户可用的服务商
 
-TYPE `GET` 
+TYPE `GET`
 
 > `/Ticket/attendantList`
-
-
 
 ## 4.4. 服务商操作
 
     为当前用户（卖家 服务商）操作（添加 删除）服务商
 
-TYPE `POST` 
+TYPE `POST`
 
 > `/Ticket/attendant`
-
-
 
 ## 4.x. 指派工单
 
     对现有工单进行下一步指派
-
 
 # 5. 后台模块
 

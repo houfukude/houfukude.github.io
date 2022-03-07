@@ -1,6 +1,6 @@
 # Deadbeef 支持 GBK 的 patch 记录
 
->Update: 2012-10-30 10:50:18
+> Update: 2012-10-30 10:50:18
 
 `xxx.patch` 文件到用法：
 
@@ -15,7 +15,6 @@ sudo apt-get install libasound2-dev libpulse-dev libwavpack-dev libsndfile1-dev 
 ```
 
 > PS: libmad0-dev 在 ubuntu.srt.cn 源上是 404 not found 所以在 [mirrors.163.com](http://mirrors.163.com/ubuntu/pool/universe/libm/libmad/libmad0_0.15.1b-7ubuntu1_i386.deb) 下载
-
 
 ## 下载源码
 
@@ -48,33 +47,37 @@ sudo make install
 ## 打包
 
 安装 checkinstall
+
 ```
 sudo apt-get install checkinstall
 ```
 
 使用 checkinstall 进行打包
+
 ```
 sudo checkinstall
 ```
+
 然后一路回车就好了
 
 这是我打包的：
 [deadbeef-0.5.6-i386-gbk.deb](http://file.houfukude.tk/13001-deadbeef_0.5.6-1_i386.deb)
 
-## 关于自己打包deadbeef不能播放ape的问题
+## 关于自己打包 deadbeef 不能播放 ape 的问题
 
-由于ape编码非开源最好的解决方案就是下载编译好的
+由于 ape 编码非开源最好的解决方案就是下载编译好的
 
-ape编码支持文件 [ffap.so_for_deadbeef-0.5.6](http://file.houfukude.tk/13002-ffap.so)
+ape 编码支持文件 [ffap.so_for_deadbeef-0.5.6](http://file.houfukude.tk/13002-ffap.so)
 
 用法:
+
 ```
 sudo mv ffap.so /usr/local/lib/deadbeef
 ```
 
->Update: 2022.01.28
+> Update: 2022.01.28
 
-本文写于 2012-10-30  使用的x86架构的xubuntu12.10 这里仅内容转移,并未实际验证
+本文写于 2012-10-30 使用的 x86 架构的 xubuntu12.10 这里仅内容转移,并未实际验证
 
 参考帖子：http://forum.ubuntu.org.cn/viewtopic.php?t=303365
 

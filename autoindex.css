@@ -1,10 +1,9 @@
 .markdown-body-custom {
-    overflow: auto;
+	overflow: auto;
 	max-width: 1000px;
 }
 
-
-.comments-body{
+.comments-body {
 	/* body - 16*2 */
 	max-width: 968px;
 }
@@ -16,21 +15,21 @@
 }
 
 .markdown-body-custom p code {
-    color: greenyellow;
+	color: greenyellow;
 }
 
 .markdown-body-custom li code {
-    color: greenyellow;
+	color: greenyellow;
 }
 
 .markdown-selected {
-    background: purple;
+	background: purple;
 }
 
-.markdown-menu-btn{
-    position: fixed;
-    top: 12px;
-    left: 8px;
+.markdown-menu-btn {
+	position: fixed;
+	top: 12px;
+	left: 8px;
 }
 
 .autoindex-container {
@@ -46,20 +45,54 @@
 	bottom: 0;
 }
 
+.actor {
+	fill: lightgrey !important;
+	stroke: none !important;
+}
+
+.messageLine0 {
+	stroke-width: 1.5 !important;
+	stroke-dasharray: none !important;
+	stroke: lightgrey !important;
+}
+
+.messageLine1 {
+	stroke-width: 1.5;
+	stroke-dasharray: none !important;
+	stroke: lightgrey !important;
+}
+
+#arrowhead path {
+	fill: lightgrey !important;
+	stroke: lightgrey !important;
+}
+
+.messageText {
+	fill: gray !important;
+	stroke: none !important;
+	font-family: 'trebuchet ms', verdana, arial;
+	font-size: 14px;
+}
+
+.loopText > tspan {
+	fill: green !important;
+	stroke: none !important;
+	font-family: 'trebuchet ms', verdana, arial;
+}
 
 #player-layout {
 	width: 290px;
 	position: fixed !important;
-	top: 8px  !important;
-	right: 4%  !important;
+	top: 8px !important;
+	right: 4% !important;
 }
 
 #player-close {
 	position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
+	top: 0 !important;
+	right: 0 !important;
 }
 
-.aplayer-info{
+.aplayer-info {
 	background: rebeccapurple !important;
 }

@@ -1,4 +1,4 @@
-# 侯爷博客 
+# 侯爷博客
 
 (Github 静态页面版)
 
@@ -10,7 +10,7 @@
 
 终于把旧博客的技术类的文章迁移过来了
 
->by houfukude
+> by houfukude
 
 # 关于
 
@@ -20,7 +20,7 @@
 
 本 Blog 评论采用 [Gitalk](https://github.com/gitalk/gitalk) 进行评论管理
 
-本 Blog 旧文章采用 [BBCode-To-Markdown](https://jondum.github.io/BBCode-To-Markdown-Converter/) 进行手工迁移 
+本 Blog 旧文章采用 [BBCode-To-Markdown](https://jondum.github.io/BBCode-To-Markdown-Converter/) 进行手工迁移
 
 # 详细说明
 

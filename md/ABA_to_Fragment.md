@@ -1,10 +1,10 @@
-# ActionBarActivity在进行替换Fragment时的问题
+# ActionBarActivity 在进行替换 Fragment 时的问题
 
->Update: 2015-03-13 15:47:32
+> Update: 2015-03-13 15:47:32
 
-最近一直在使用ActionBarActivity来进行activity开发
+最近一直在使用 ActionBarActivity 来进行 activity 开发
 
-ActionBarActivity继承自FragmentActivity，
+ActionBarActivity 继承自 FragmentActivity，
 
 可以同时支持
 
@@ -12,15 +12,15 @@ ActionBarActivity继承自FragmentActivity，
 android.app.Fragment
 ```
 
-和 
+和
 
 ```java
 android.support.v4.app.Fragment
 ```
 
-但是在对Fragment的展示有不同。
+但是在对 Fragment 的展示有不同。
 
-如果直接使用FragmentActivity在添加Fragment的时候可以直接使用
+如果直接使用 FragmentActivity 在添加 Fragment 的时候可以直接使用
 
 ```java
 FragmentTransaction.replace(android.R.id.content, Fragment);
@@ -72,10 +72,10 @@ public abstract class BaseActivity extends ActionBarActivity {
     }
 }
 ```
-    
-`only_framelayout.xml`文件就只有一个FrameLayout 就不贴代码了
 
-把这个作为父类就可以快速展示任意Fragment了无论是
+`only_framelayout.xml`文件就只有一个 FrameLayout 就不贴代码了
+
+把这个作为父类就可以快速展示任意 Fragment 了无论是
 
 ```
 android.app.Fragment
@@ -87,7 +87,7 @@ android.app.Fragment
 android.support.v4.app.Fragment
 ```
 
-同时还可以通过重写getFragmentID()方法来达到替换任意view的目的 
+同时还可以通过重写 getFragmentID()方法来达到替换任意 view 的目的
 
 自我感觉还不错吧 =。=
 
@@ -97,6 +97,6 @@ android.support.v4.app.Fragment
 
 更新一发！证明自己还活着
 
->Update: 2022.01.28
+> Update: 2022.01.28
 
 看看以前自己稚嫩的代码 哈哈哈哈哈哈
