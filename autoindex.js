@@ -105,7 +105,7 @@ function updateHTMLBody() {
 		<header class="markdown-header mdui-appbar">
 			<div class="mdui-toolbar mdui-color-theme">
 				<a href="javascript:;" class="mdui-typo-headline" id="headerName"></a>
-				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'powered by Houfukude'}">
+				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '花自飘零水自流，一种相思，两处闲愁'}">
 					<i class="mdui-text-color-red mdui-icon material-icons">favorite</i>
 				</a>
 				<a href="/index.html?p=links" class="mdui-btn" mdui-tooltip="{content: '友情链接'}">
