@@ -40,7 +40,11 @@ function init(iput_mode, ...data) {
 		// $$("#title").text(markdownName);
 		// $$("#headerName").text(markdownName);
 		$$(function () {
-
+			if (markdownName.endsWith("/_index.md")) {
+				$$('#arrow_back').hide()
+			} else {
+				$$('#drawer-title').hide()
+			}
 			convertMarkDown()
 			if (data[1]) {
 				$$('#player-open').attr('onclick', `startPlayMusic('` + data[1] + `','` + data[2] + `','` + data[3] + `');`);
@@ -104,6 +108,10 @@ function updateHTMLBody() {
 				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'powered by Houfukude'}">
 					<i class="mdui-text-color-red mdui-icon material-icons">favorite</i>
 				</a>
+				<a href="/index.html?p=_links" class="mdui-btn" mdui-tooltip="{content: '友情链接'}">
+					<i class="mdui-text-color-orange mdui-icon material-icons">collections_bookmark</i>
+					友情链接
+				</a>
 				<div class="mdui-toolbar-spacer"></div>
 
 				<a href="javascript:;" id="player-open" class="mdui-btn mdui-btn-icon" style="margin-right: 8%;">
@@ -114,7 +122,14 @@ function updateHTMLBody() {
 		</header>
 
 		<drawer class="mdui-drawer" id="left-drawer">
-			<h1 id="drawer-title" class="mdui-p-x-2">目录</h1>
+			<a id="arrow_back" style="text-decoration:none;" href="/index.html" mdui-tooltip="{content: '返回首页'}">
+				<h1 class="mdui-p-x-2 mdui-ripple">
+					回到首页
+				</h1>
+			</a>
+			<h1 id="drawer-title" class="mdui-p-x-2 mdui-ripple">
+				目录
+			</h1>
 		</drawer>
 
 		<div class="mdui-container autoindex-container">

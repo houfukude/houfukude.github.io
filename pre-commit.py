@@ -137,12 +137,12 @@ def update_index(article):
         article['title'], article['id'], article['modifytime'])
     # 读取 index.md
     content = ""
-    with open("./md/index.md", "r", encoding='utf-8') as file:
+    with open("./md/_index.md", "r", encoding='utf-8') as file:
         content = file.read()
     # 替换
     content = content.replace(REPLACE_TAG, REPLACE_TAG + insert_info)
     # 写入 index.md
-    with open("./md/index.md", "w", encoding='utf-8') as file:
+    with open("./md/_index.md", "w", encoding='utf-8') as file:
         file.write(content)
 
 
