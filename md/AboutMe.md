@@ -138,11 +138,11 @@
 
 ~~或许会做或许不会做~~
 
--   ~~返回首页~~  2022年3月7日 已添加
+-   ~~返回首页~~ 2022 年 3 月 7 日 已添加
 
 -   **toolbar 功能** ( 当前 toobar 还是太单薄了 )
 
--   **友情链接** ( 独立博客怎么少得了友链呢,虽然现在身边已经没人折腾了 )
+-   ~~友情链接~~ ( 独立博客怎么少得了友链呢,虽然现在身边已经没人折腾了 ) 2022 年 3 月 8 日 已添加
 
 -   **sitemap** ( 就一个 index 不知道有没有必要做一个站点地图 )
 
@@ -154,7 +154,9 @@
 
 -   音乐播放 [aplayer](https://aplayer.js.org/)
 
--   本地调试 [webd](https://gwgw.ga/fidx.html#/webd/)
+-   本地展示 [webd](https://gwgw.ga/fidx.html#/webd/)
+
+-   本地展示 `python3 -m http.server`
 
 -   内容书写 [markdown](https://markdown.com.cn/basic-syntax/)
 

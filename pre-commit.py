@@ -19,7 +19,6 @@ import os
 import time
 import datetime
 from argparse import RawTextHelpFormatter
-from tkinter import E
 
 import requests
 from dotenv import load_dotenv
