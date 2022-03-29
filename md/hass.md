@@ -25,7 +25,7 @@
 
     同时，还有社区维护的 [HACS](https://hacs.xyz/) (Home Assistant Community Store)，可以让你自己添加插件。
 
-    todo: 安装 HACS
+    ![HA.png](https://s2.loli.net/2022/03/30/KNpE2QChdazU8vi.png)
 
 ## 家庭照明
 
