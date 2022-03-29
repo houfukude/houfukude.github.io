@@ -31,6 +31,9 @@
 <!--add new article here 通过标识符 `ARTICLE` 自动识别-->
 <!--ARTICLE-->
 
+## [我的智能家居解決方案](index.html?p=hass) 
+2022-03-30 00:41:35
+
 ## [Android Studio 使用 系统签名文件](index.html?p=importkeypair)
 
 2022-03-08 22:48:51
