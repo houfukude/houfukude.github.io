@@ -6,7 +6,7 @@
 
 -   Home Assistant
 
-    > Home Assistant 是一個智能家居系統，可以讓你的家裡自動化，讓你的家裡更加安全。
+    > Home Assistant 是一個智能家居系統，可以让你的家里自动化，让你的家裡更加安全。
 
     Home Assistant 是我的解决方案的核心部分。是数据中心，也是控制中心。
 
