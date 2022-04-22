@@ -285,9 +285,18 @@ function getName(URL) {
  * @param {*} current 
  */
 function getLink(current) {
-	return `<a class="mdui-list-item mdui-ripple" `
-		+ ` onclick="menuSelect('#` + current.id + `');"`
-		+ `>` + current.title + `</a>`
+	if (current.title.length > 22) {
+		current.title = current.title.substring(0, 22) + '<br />' + current.title.substring(22);
+	}
+	if (current.href) {
+		return `<a class="mdui-list-item mdui-ripple" `
+			+ `href="` + current.href + `" `
+			+ `>` + current.title + `</a>`
+	} else {
+		return `<a class="mdui-list-item mdui-ripple" `
+			+ ` onclick="menuSelect('#` + current.id + `');"`
+			+ `>` + current.title + `</a>`
+	}
 }
 
 /**
@@ -323,6 +332,7 @@ function createMenu() {
 			.from($$('#markDown')[0].childNodes)
 			.filter((node) => /h[1-6]/i.test(node.tagName))
 			.map((node) => ({
+				href: node.childNodes[0].href,
 				id: node.getAttribute('id'),
 				level: parseInt(node.tagName.replace('H', '')),
 				title: node.innerText
