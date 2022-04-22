@@ -1,6 +1,6 @@
 # 我的智能家居解決方案
 
-> Update 2022-03-30 00:41:35 [WIP]
+> Update 2022-04-22 [WIP]
 
 ## 控制中枢
 
@@ -113,13 +113,35 @@
 
 -   Google Assistant
 
-todo: 这个有点麻烦以后再补充，后面也很麻烦之后再说
+    > Google Assistant 是一个智能语音控制系统，可以控制各类设备，比如空调，电视，空气净化器等等。
+
+    在 Home Assistant 中有对应的模块 `google_assistant `。配置略为复杂。有机会再详细讲解。
+
+    [ home-assistant/google_assistant ](https://www.home-assistant.io/integrations/google_assistant/)
+
+    配置完成后就可以通过，手机以及智能音箱进行语音控制了。
+
+    ![Google Assistant](https://s2.loli.net/2022/04/22/Wpm1JRGzoQ2c6i3.jpg)
 
 ## 设备追踪
 
 1. OpenWRT `luci`
 
+    > OpenWRT 的 `luci` 是一个设备追踪的框架，可以查看设备的状态，比如网络状态，设备状态等等。
+
+    在 Home Assistant 中有对应的模块 `luci` ，需要配置`openwrt` 安装模块
+
+    ```
+    opkg install luci-mod-rpc
+    ```
+
+    然后在 `luci` 配置页面配置 `luci` 的 ip 地址，用户名与密码，就可以获得设备状态。
+
 2. MoblieApp
+
+    > 可以查看设备的状态，比如网络状态，设备状态等等。
+
+    在 Home Assistant 中有对应的模块 `mobile_app` ,只需要需要追踪的设备安装 `Home Assistant` 就可以了。
 
 ## 视频监控与报警
 

@@ -1,6 +1,8 @@
 # 友情链接
 
-> update 2022-03-07 22:04:19
+> update 2022-04-22 
+
+-   [pengcu 的 blog](https://blog.pengcu.tk/)
 
 -   [郑泽鑫的博客](https://zhengzexin.com/)
 
