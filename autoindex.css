@@ -74,7 +74,7 @@
 	font-size: 14px;
 }
 
-.loopText > tspan {
+.loopText>tspan {
 	fill: green !important;
 	stroke: none !important;
 	font-family: 'trebuchet ms', verdana, arial;

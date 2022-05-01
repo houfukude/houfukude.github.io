@@ -229,13 +229,11 @@ function startPlayMusic(url, name, cover) {
 		container: document.getElementById('aplayer'),
 		theme: '#000000',
 		// fixed: true,
-		audio: [
-			{
-				name: name,
-				url: url,
-				cover: cover
-			}
-		]
+		audio: [{
+			name: name,
+			url: url,
+			cover: cover
+		}]
 	});
 
 	musicPlayer.play()
@@ -289,13 +287,13 @@ function getLink(current) {
 		current.title = current.title.substring(0, 22) + '<br />' + current.title.substring(22);
 	}
 	if (current.href) {
-		return `<a class="mdui-list-item mdui-ripple" `
-			+ `href="` + current.href + `" `
-			+ `>` + current.title + `</a>`
+		return `<a class="mdui-list-item mdui-ripple" ` +
+			`href="` + current.href + `" ` +
+			`>` + current.title + `</a>`
 	} else {
-		return `<a class="mdui-list-item mdui-ripple" `
-			+ ` onclick="menuSelect('#` + current.id + `');"`
-			+ `>` + current.title + `</a>`
+		return `<a class="mdui-list-item mdui-ripple" ` +
+			` onclick="menuSelect('#` + current.id + `');"` +
+			`>` + current.title + `</a>`
 	}
 }
 
@@ -312,7 +310,7 @@ function menuSelect(id) {
 
 	location.href = location.pathname + window.location.search + id
 
-	window.scrollBy(0, - 100);
+	window.scrollBy(0, -100);
 
 	$$(id).addClass('markdown-selected');
 
@@ -329,45 +327,47 @@ function menuSelect(id) {
 function createMenu() {
 	let titleListDOM =
 		Array
-			.from($$('#markDown')[0].childNodes)
-			.filter((node) => /h[1-6]/i.test(node.tagName))
-			.map((node) => ({
-				href: node.childNodes[0].href,
-				id: node.getAttribute('id'),
-				level: parseInt(node.tagName.replace('H', '')),
-				title: node.innerText
-			}))
-			.reduce(
-				/*
-				result: 必需。初始值, 或者计算结束后的返回值。
-				current 必需。当前元素。
-				index   可选。当前元素的索引；                     
-				list    可选。当前元素所属的数组对象。
-				*/
-				(result, current, index, list) => {
-					// 如果 index > 0 获取前一个元素
-					if (index) { var prev = list[index - 1] }
-					if (!index || prev.level === current.level) {
-						// index = 0 或者 emm 没有其他情况了
-						result += getLink(current)
-					} else if (prev.level > current.level) {
-						// ??
-						while (prev.level-- > current.level) {
-							result += '</div>'
-						}
-						result += getLink(current)
-					} else if (prev.level < current.level) {
-						// ??
-						while (prev.level++ < current.level) {
-							result += '<div class="mdui-list mdui-p-l-2">'
-						}
-						result += getLink(current)
+		.from($$('#markDown')[0].childNodes)
+		.filter((node) => /h[1-6]/i.test(node.tagName))
+		.map((node) => ({
+			href: node.childNodes[0].href,
+			id: node.getAttribute('id'),
+			level: parseInt(node.tagName.replace('H', '')),
+			title: node.innerText
+		}))
+		.reduce(
+			/*
+			result: 必需。初始值, 或者计算结束后的返回值。
+			current 必需。当前元素。
+			index   可选。当前元素的索引；                     
+			list    可选。当前元素所属的数组对象。
+			*/
+			(result, current, index, list) => {
+				// 如果 index > 0 获取前一个元素
+				if (index) {
+					var prev = list[index - 1]
+				}
+				if (!index || prev.level === current.level) {
+					// index = 0 或者 emm 没有其他情况了
+					result += getLink(current)
+				} else if (prev.level > current.level) {
+					// ??
+					while (prev.level-- > current.level) {
+						result += '</div>'
 					}
-					return result
-				},
-				// initialValue: 可选。传递给函数的初始值，相当于 result 的初始值。
-				`<ul class="mdui-list">`
-			) + `</ul>`; // 最后再拼接尾部
+					result += getLink(current)
+				} else if (prev.level < current.level) {
+					// ??
+					while (prev.level++ < current.level) {
+						result += '<div class="mdui-list mdui-p-l-2">'
+					}
+					result += getLink(current)
+				}
+				return result
+			},
+			// initialValue: 可选。传递给函数的初始值，相当于 result 的初始值。
+			`<ul class="mdui-list">`
+		) + `</ul>`; // 最后再拼接尾部
 
 	$$('#left-drawer').append(titleListDOM)
 	leftDrawer = new mdui.Drawer('#left-drawer');
@@ -419,17 +419,17 @@ function convertList() {
 
 		listItemDOM =
 			`
-			<a href="`+ eachURL + `" onclick="return openItem(event,'` + eachURL + `');">
+			<a href="` + eachURL + `" onclick="return openItem(event,'` + eachURL + `');">
 			<li class="mdui-list-item mdui-ripple">
 				<i class="mdui-list-item-avatar mdui-color-grey-900 mdui-icon material-icons" >
-					`+ eachType + `
+					` + eachType + `
 				</i>
 				<div class="mdui-list-item-content mdui-p-x-2">
 					<div class="mdui-list-item-title">
-						`+ eachName + `
+						` + eachName + `
 					</div>
 					<div class="mdui-list-item-text mdui-list-item-one-line">
-						`+ eachInfo + `
+						` + eachInfo + `
 					</div>
 				</div>
 			</li>
@@ -441,7 +441,9 @@ function convertList() {
 
 	if (hasMarkdown) {
 		// 在 DOM 加载完毕后会调用
-		$$(function () { convertMarkDown() })
+		$$(function () {
+			convertMarkDown()
+		})
 	}
 }
 
@@ -616,10 +618,11 @@ function convertSequence() {
 		try {
 			let chart = Diagram.parse(code);
 			sequenceList[index].innerHTML = "<div id='canvas-sequence-" + index + "'></div>"
-			chart.drawSVG('canvas-sequence-' + index, { theme: 'simple' });
+			chart.drawSVG('canvas-sequence-' + index, {
+				theme: 'simple'
+			});
 		} catch (error) {
 			console.log(error);
 		}
 	}
 }
-

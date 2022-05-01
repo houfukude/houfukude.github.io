@@ -1,0 +1,26 @@
+{
+	"files.autoSave": "afterDelay",
+	"git.autofetch": true,
+	"[javascript]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
+	"editor.inlineSuggest.enabled": true,
+	"[css]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
+	"[markdown]": {
+		"editor.unicodeHighlight.ambiguousCharacters": false,
+		"editor.unicodeHighlight.invisibleCharacters": false,
+		"editor.wordWrap": "on",
+		"editor.quickSuggestions": false
+	}
+}

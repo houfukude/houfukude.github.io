@@ -160,7 +160,9 @@
 
 -   内容书写 [markdown](https://markdown.com.cn/basic-syntax/)
 
--   代码格式化 [Prettiter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+-   Markdown 格式化 [Prettiter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+-   代码格式化 [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
 
 -   评论管理 [Gitalk](https://github.com/gitalk/gitalk)
 
