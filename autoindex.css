@@ -1,3 +1,14 @@
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+	width: 0 !important;
+}
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+	width: 0 !important;
+	height: 0;
+}
+
 .markdown-body-custom {
 	overflow: auto;
 	max-width: 1000px;
