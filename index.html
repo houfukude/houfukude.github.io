@@ -29,7 +29,7 @@
 </script>
 <!-- 基于Github issue 的评论-->
 <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
-<script type="text/javascript">
+<script async type="text/javascript">
 	var gitalk = new Gitalk({
 		clientID: '9bb1abf537bd0d6fd632',
 		clientSecret: 'be26519f099363b8bdfe8c62adc69dc73425949b',
@@ -49,7 +49,6 @@
 <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/1.0.1/css/mdui.min.css" />
 <!-- Markdown base -->
 <script src="//cdnjs.loli.net/ajax/libs/marked/0.7.0/marked.min.js"></script>
-<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/highlight.js/11.3.1/styles/dark.min.css" />
 <script src="//cdnjs.loli.net/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 <!-- Markdown base -->
 
@@ -69,17 +68,16 @@
 <!-- mermaid for Markdown -->
 
 <!-- music player -->
-<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" />
-<script src="//cdnjs.loli.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+
+<script async src="//cdnjs.loli.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 <!-- music player -->
 
-<link rel="stylesheet" href="./gitalk.css" />
 <!--访问统计-->
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF2XM9DZ8V"></script>
-<script>
+<script async>
 	window.dataLayer = window.dataLayer || [];
 
 	function gtag() {
@@ -89,4 +87,15 @@
 
 	gtag('config', 'G-SF2XM9DZ8V');
 </script>
+<!-- CSS 延迟加载 -->
+<link rel="preload" href="gitalk.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="//cdnjs.loli.net/ajax/libs/highlight.js/11.3.1/styles/dark.min.css" as="style"
+	onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="//cdnjs.loli.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" as="style"
+	onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+	<link rel="stylesheet" href="gitalk.css">
+	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/highlight.js/11.3.1/styles/dark.min.css">
+	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" />
+</noscript>
 <!-- 可以将本文件命名成 index.html 然后扔到目录里 -->
