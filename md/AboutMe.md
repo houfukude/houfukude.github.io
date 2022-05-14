@@ -1,6 +1,6 @@
 # 关于本博客
 
-> update 2022-02-06 20:40:00
+> update 2022-05-14 17:55:00
 
 <!--media-->
 
@@ -40,6 +40,19 @@
     所有的文章都在 `/md/` 目录下, 通过访问 `index.html?p=xxx` 进行读取对应的 `xxx.md` 然后动态填充到页面中, 这样的优点就是一个 `index.html` 就可以解析所有的 markdown 文件. ~~遥想最初的时候, 每个目录一份 html+css+js,每次有新文档就复制粘贴一份~~
 
     也因为历史遗留问题 `nginx autoindex` 所有很多东西都是通过 js 动态注入的
+
+-   **markd 扩展:支持图像调整大小**
+
+    展示图片可赋予 `宽高属性` 使用方式如下：
+    
+    ```
+    ![](notifications.jpg "=100px,20px")
+    ![](notifications.jpg "=100rem,20vh")
+    ![](notifications.jpg "=100px")
+    ![](notifications.jpg)
+    ```
+
+    参考 [Support image resizing](https://github.com/markedjs/marked/issues/339#issuecomment-726052911)
 
 -   **扩展各类流程图支持**
 

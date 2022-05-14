@@ -447,6 +447,13 @@ function convertList() {
 	}
 }
 
+function sanitize(str) {
+	return str.replace(/&<"/g, function (m) {
+		if (m === "&") return "&amp;"
+		if (m === "<") return "&lt;"
+		return "&quot;"
+	})
+}
 /**
  * MarkDownReader 的主方法
  * 读取 markdown 文件并转换成 HTML
@@ -454,9 +461,19 @@ function convertList() {
 function convertMarkDown() {
 	let docURL = location.pathname.replace(/[^/]+$/, '') + markdownName
 
+	const renderer = new marked.Renderer();
+
+	// 读取 markdown 中 image 的size
+	renderer.image = function (src, title, alt) {
+		const exec = /=\s*(\d*(?:px|em|ex|ch|rem|vw|vh|vmin|vmax|%))\s*,*\s*(\d*(?:px|em|ex|ch|rem|vw|vh|vmin|vmax|%))*\s*$/.exec(title);
+		let res = '<img src="' + sanitize(src) + '" alt="' + sanitize(alt)
+		if (exec && exec[1]) res += '" height="' + exec[1]
+		if (exec && exec[2]) res += '" width="' + exec[2]
+		return res + '">'
+	}
 	// 代码高亮
 	marked.setOptions({
-		renderer: new marked.Renderer(),
+		renderer: renderer,
 		highlight: function (code) {
 			return hljs.highlightAuto(code).value;
 		},

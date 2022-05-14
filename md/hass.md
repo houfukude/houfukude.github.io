@@ -1,6 +1,6 @@
 # 我的智能家居解決方案
 
-> Update 2022-04-22 [WIP]
+> Update 2022-05-14 [WIP]
 
 ## 控制中枢
 
@@ -121,7 +121,7 @@
 
     配置完成后就可以通过，手机以及智能音箱进行语音控制了。
 
-    ![Google Assistant](https://s2.loli.net/2022/04/22/Wpm1JRGzoQ2c6i3.jpg)
+    ![Google Assistant](https://s2.loli.net/2022/04/22/Wpm1JRGzoQ2c6i3.jpg "=80%")
 
 ## 设备追踪
 
