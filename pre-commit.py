@@ -146,11 +146,12 @@ def update_index(article):
 
 
 if __name__ == "__main__":
-    # parser = argparse.ArgumentParser(
-    #     description=USAGE, formatter_class=RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(
+        description=USAGE, formatter_class=RawTextHelpFormatter)
     # parser.add_argument('--id', type=str, default=None)
     # parser.add_argument('--title', type=str, default=None)
-    # args = parser.parse_args()
+    parser.add_argument('-l', '--local', action='store_true')
+    args = parser.parse_args()
     # print(args)
     # if check_env_and_var(args.id, args.title):
     #     exit(1)
@@ -164,4 +165,6 @@ if __name__ == "__main__":
             print("[INFO] 发现新文章: %s 标题为: %s" %
                   (article['id'], article['title']))
             update_index(article)
-            create_issue(article['id'], article['title'])
+            if not args.local:
+               # print("[INFO] create_issue")
+               create_issue(article['id'], article['title'])

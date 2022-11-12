@@ -14,9 +14,7 @@
 
 # 关于
 
-本 Blog 使用 [webd](https://gwgw.ga/fidx.html#/webd/) 作为本地调试展示页面
-
-本 Blog 使用 `python3 -m http.server` 作为 mac 本地调试展示页面
+本 Blog 使用 `python3 -m http.server` 作为本地调试展示页面
 
 本 Blog 内容采用 [markdown](https://markdown.com.cn/basic-syntax/) 进行内容书写
 
@@ -31,7 +29,8 @@
 <!--add new article here 通过标识符 `ARTICLE` 自动识别-->
 <!--ARTICLE-->
 
-## [我的智能家居解決方案](index.html?p=hass) 
+## [我的智能家居解決方案](index.html?p=hass)
+
 2022-03-30 00:41:35
 
 ## [Android Studio 使用 系统签名文件](index.html?p=importkeypair)
