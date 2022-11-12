@@ -2,25 +2,29 @@
 	"files.autoSave": "afterDelay",
 	"git.autofetch": true,
 	"[javascript]": {
-		"editor.defaultFormatter": "HookyQR.beautify"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[jsonc]": {
-		"editor.defaultFormatter": "HookyQR.beautify"
+		"editor.defaultFormatter": "vscode.json-language-features"
 	},
 	"[html]": {
-		"editor.defaultFormatter": "HookyQR.beautify"
+		"editor.defaultFormatter": "vscode.html-language-features"
 	},
 	"[json]": {
-		"editor.defaultFormatter": "HookyQR.beautify"
+		"editor.defaultFormatter": "vscode.json-language-features"
 	},
 	"editor.inlineSuggest.enabled": true,
 	"[css]": {
-		"editor.defaultFormatter": "HookyQR.beautify"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[markdown]": {
 		"editor.unicodeHighlight.ambiguousCharacters": false,
 		"editor.unicodeHighlight.invisibleCharacters": false,
 		"editor.wordWrap": "on",
-		"editor.quickSuggestions": false
+		"editor.quickSuggestions": {
+			"comments": "off",
+			"strings": "off",
+			"other": "off"
+		}
 	}
 }
