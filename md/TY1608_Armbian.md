@@ -37,6 +37,9 @@
 
 发动俺寻思之力 然后应该是背面的这个了
 
+
+![Snipaste_2025-07-22_16-41-13.png](https://s2.loli.net/2025/07/22/H4txfwiv3geAKhr.png)
+
 ### 2. 刷入 Android 9 系统包 (线刷)
 
 打开 USB_Burning_Tool_v2.2 
