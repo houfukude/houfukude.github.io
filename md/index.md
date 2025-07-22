@@ -30,7 +30,7 @@
 <!--ARTICLE-->
 
 ## [电信 TY1608 Armbian 折腾踩坑日志](index.html?p=TY1608_Armbian) 
-2025-07-21 23:34:57
+2025-07-22 16:24:57
 
 ## [我的智能家居解決方案](index.html?p=hass)
 

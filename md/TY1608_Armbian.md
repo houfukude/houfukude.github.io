@@ -1,6 +1,6 @@
 # 电信 TY1608 Armbian 折腾踩坑日志
 
-> Update: 2025-07-21 14:16:22
+> Update: 2025-07-22 16:24:57
 
 ## 设备信息 
 
@@ -11,6 +11,7 @@
 * OS: Android 4.4.2
 
 初始系统是电信IPTV定制系统
+![image.png](https://s2.loli.net/2025/07/22/2o73ASwJztPi9UZ.png)
 
 ## 准备工作
 
@@ -163,7 +164,7 @@ sudo rm -rf /var/lib/docker.bak
 这是我最后处理后的效果
 ![Snipaste_2025-07-21_18-46-11.png](https://s2.loli.net/2025/07/21/HDK2BemzAZjJGT3.png)
 
-### n. 配置 Home Assistant
+### 5. 配置 Home Assistant
 
 ```bash
 armbian-config
@@ -173,3 +174,7 @@ Software -> HomeAutomation -> HAS002 - Home Assistant
 >踩坑 : 1G RAM 还是太小了 跑完整的 Home Assistant 会爆内存卡死
 
 >踩坑 : docker的好多东西都吃内存 1G RAMMMMMM!!!
+
+最后装了一个 casaos 然后就这样吧
+
+![Snipaste_2025-07-22_16-22-42.png](https://s2.loli.net/2025/07/22/ea4whQHOcokzE2s.png)
