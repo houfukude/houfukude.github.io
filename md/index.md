@@ -29,6 +29,9 @@
 <!--add new article here 通过标识符 `ARTICLE` 自动识别-->
 <!--ARTICLE-->
 
+## [电信 TY1608 Armbian 折腾踩坑日志](index.html?p=TY1608_Armbian) 
+2025-07-21 23:34:57
+
 ## [我的智能家居解決方案](index.html?p=hass)
 
 2022-03-30 00:41:35

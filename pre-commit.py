@@ -40,25 +40,15 @@ REPO_NAME = '%s.github.io' % USERNAME
 # repo 的issues API地址
 URL = 'https://api.github.com/repos/%s/%s/issues' % (USERNAME, REPO_NAME)
 
-session = requests.Session()
+print('[INFO] 使用的 URL: %s' % URL)
 
-
-def init_session():
-    """检查 环境变量 和 传入参数"""
-    if not USERNAME:
-        print('[ERRO] 在.env 中未找到变量 USERNAME ')
-        return 1
-    if not TOKEN:
-        print('[ERRO] 在.env 中未找到变量 TOKEN')
-        return 1
-    if not TOOL:
-        print('[ERRO] 在.env 中未找到变量 TOOL')
-        return 1
-
-    # 使用 session 来进行授权
-    session.auth = (USERNAME, TOKEN)
-    return 0
-
+session= requests.Session()
+# 使用 session 来进行授权
+session.headers.update({
+    "Authorization": f"Bearer {TOKEN}",
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28"
+})
 
 def find_online_exist():
     '''找到现在已经存在的评论'''
@@ -66,6 +56,7 @@ def find_online_exist():
     exist_labels = []
     if response.status_code == 200:
         data = response.json()
+        print('[INFO] 找到 %d 个已存在的 issue' % len(data))
         for each in data:
             for label in each["labels"]:
                 l_name = label["name"]
@@ -74,6 +65,7 @@ def find_online_exist():
         exist_labels = list(dict.fromkeys(exist_labels))
         return exist_labels
     else:
+        print('[ERRO] Response:', response.content)
         return []
 
 
@@ -87,12 +79,13 @@ def create_issue(id, title):
         return 1
     # print('[INFO] 开始创建 issue {0:s} '.format(title))
     # 内容
-    issue = {'title': '%s 的评论' % title,
-             'body': "# %s\nhttps://%s.github.io/index.html?p=%s" % (title, USERNAME, id),
-             'labels': [TOOL, id]}
-
+    issue = {
+        'title': '%s 的评论' % title,
+        'body': "# %s\nhttps://%s.github.io/index.html?p=%s" % (title, USERNAME, id),
+        'labels': [TOOL, id]
+    }
     # Post 请求
-    response = session.post(URL, json.dumps(issue))
+    response = session.post(URL, json=issue)
     if response.status_code == 201:
         print('[INFO] 创建 issue {0:s} 成功!'.format(title))
         return 0
@@ -139,10 +132,14 @@ def update_index(article):
     with open("./md/index.md", "r", encoding='utf-8') as file:
         content = file.read()
     # 替换
+    if article['id'] in content:
+        print("[INFO] 文章 %s 已经存在于 index.md 中" % article['id'])
+        return False
     content = content.replace(REPLACE_TAG, REPLACE_TAG + insert_info)
     # 写入 index.md
     with open("./md/index.md", "w", encoding='utf-8') as file:
         file.write(content)
+    return True
 
 
 if __name__ == "__main__":
@@ -158,13 +155,14 @@ if __name__ == "__main__":
     # else:
     #     result = create_issue(args.id, args.title)
     #     exit(result)
-    init_session()
     exist_labels = find_online_exist()
+    if not exist_labels:
+        print("[INFO] 没有找到已存在的 issue")
+        exit(0)
     for article in find_local_articles():
         if article['id'] not in exist_labels:
             print("[INFO] 发现新文章: %s 标题为: %s" %
                   (article['id'], article['title']))
-            update_index(article)
-            if not args.local:
-               # print("[INFO] create_issue")
-               create_issue(article['id'], article['title'])
+            if update_index(article) and not args.local:
+                # print("[INFO] create_issue")
+                create_issue(article['id'], article['title'])
