@@ -87,6 +87,15 @@
 
 	gtag('config', 'G-SF2XM9DZ8V');
 </script>
+<script src="//cdn.jsdelivr.net/npm/sakana"></script>
+<script>
+	Sakana.setMute(false);
+	Sakana.init({
+		el: ".sakana-box", // 启动元素 node 或 选择器
+		scale: 0.5, // 缩放倍数
+		canSwitchCharacter: true, // 允许换角色
+	});
+</script>
 <!-- CSS 延迟加载 -->
 <link rel="preload" href="gitalk.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/dark.min.css" as="style"
