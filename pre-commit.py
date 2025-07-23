@@ -7,7 +7,7 @@
 # Version: 1.0
 # Lisence: MIT
 # Author: houfukude@gmail.com
-# Blog: https://blog.houfukude.tk/
+# Blog: https://blog.houfukude.eu.org/
 # Usage:
 # 	./pre-commit.py
 # Based on https://gist.github.com/JeffPaine/3145490 with tweaks

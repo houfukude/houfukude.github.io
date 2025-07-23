@@ -14,7 +14,7 @@ https://github.com/MichMich/MagicMirror
 
 于是就撸了一个雏形出来
 
-请用力的戳这里 http://blog.houfukude.tk/MagicMirror/
+请用力的戳这里 http://blog.houfukude.eu.org/MagicMirror/
 
 ## 主界面
 

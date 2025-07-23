@@ -4,7 +4,7 @@
 
 <!--media-->
 
-<media src="https://ha.houfukude.tk:8123/local/KD_Searching.m4a" ></media>
+<media src="https://ha.houfukude.eu.org:8123/local/music/KD_Searching.m4a" ></media>
 
 终于重拾写独立博客的想法,在把以前的技术文档都转换之后,又折腾了不少玩意
 
@@ -131,7 +131,7 @@
 
     > PS 目前使用的还是比较初级,有需要可以查看 `pre_commit.py`
 
-    > https://blog.houfukude.tk/pre-commit.py
+    > https://blog.houfukude.eu.org/pre-commit.py
 
     不过现在写文章可以更加专注内容 (笑 , 创建一个 md ,然后在提交 github 之前 运行一下
 
