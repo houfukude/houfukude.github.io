@@ -111,7 +111,7 @@ function updateHTMLBody() {
 				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '花自飘零水自流，一种相思，两处闲愁'}">
 					<i class="mdui-text-color-red mdui-icon material-icons">favorite</i>
 				</a>
-				<a href="/index.html?p=links" class="mdui-btn" mdui-tooltip="{content: '友情链接'}">
+				<a href="index.html?p=links" class="mdui-btn" mdui-tooltip="{content: '友情链接'}">
 					<i class="mdui-text-color-orange mdui-icon material-icons">collections_bookmark</i>
 					友情链接
 				</a>
@@ -125,7 +125,7 @@ function updateHTMLBody() {
 		</header>
 
 		<drawer class="mdui-drawer" id="left-drawer">
-			<a id="arrow_back" style="text-decoration:none;" href="/index.html" mdui-tooltip="{content: '返回首页'}">
+			<a id="arrow_back" style="text-decoration:none;" href="index.html" mdui-tooltip="{content: '返回首页'}">
 				<h1 class="mdui-p-x-2 mdui-ripple">
 					回到首页
 				</h1>
