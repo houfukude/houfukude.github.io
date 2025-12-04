@@ -153,12 +153,23 @@ function updateHTMLBody() {
 
 		<footer class="autoindex-footer mdui-bottom-nav-scroll-hide">
 			<!-- 页脚信息 -->
-			<a class="mdui-float-left  mdui-p-x-2">© 2022 继续怠惰的侯爷</a>
+			<a class="mdui-float-left  mdui-p-x-2">© <span id="year">2022</span> 继续怠惰的侯爷</a>
 			<a class="mdui-float-right  mdui-p-x-2">嗯~ o(*￣▽￣*)o</a>
 		</footer>
 		<div class="sakana-box"></div>
 		<!-- autoindex 注入 -->
 	`);
+
+	setFooterYear();
+}
+
+/**
+ * 设置页脚年份
+ */
+function setFooterYear(){
+	const year = new Date().getFullYear();
+	// console.log(year); 
+	$$('#year').text(year);
 }
 
 /**
@@ -203,6 +214,9 @@ function getType(URL) {
 		)
 	) {
 		return "'code'";
+	}
+	if ('log|ini'.includes(fileExt)) {
+		return 'text_file';
 	}
 	if ('jpg|png|bmp|gif|ico|webp'.includes(fileExt)) {
 		return 'image';
@@ -262,6 +276,21 @@ function startPlayMusic(url, name, cover) {
 }
 
 /**
+ * 查看文本文件
+ * @param {*} url 音乐路径
+ */
+function viewText(url) {
+	// 编码 URL 参数，防止特殊字符报错
+	const encodedFile = encodeURIComponent(url);
+
+	// 构建完整的日志查看页面 URL
+	const logReaderUrl = `/textReader.html?file=${encodedFile}`;
+
+	// 在新标签页打开
+	window.open(logReaderUrl, '_blank');
+}
+
+/**
  * 判断是否在当前页面就处理了 不进行跳转
  * @param {*} event
  * @param {*} URL
@@ -274,6 +303,10 @@ function openItem(event, URL) {
 		$$('#player-open').attr('onclick', `startPlayMusic('` + URL + `');`);
 		startPlayMusic(URL);
 		// 决定留下来了 不走了
+		return false;
+	}
+	if (dataType == 'text_file') {
+		viewText(URL);
 		return false;
 	}
 	return true;

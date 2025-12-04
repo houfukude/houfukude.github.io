@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Realtime Text Viewer</title>
+
+    <style>
+        body {
+            background: #000;
+            color: #ccc;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 日志区域 */
+        #log {
+            white-space: pre-wrap;
+            background: #000;
+            color: #ccc;
+            padding: 10px;
+            height: 100vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        /* 高亮样式 */
+        .log-success {
+            color: #00ff00;
+        }
+
+        .log-error {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        .log-warn {
+            color: #ffcc00;
+        }
+
+        .log-info {
+            color: #57a6ff;
+        }
+
+        /* 顶部悬浮按钮 */
+        #loadAllBtn {
+            position: fixed;
+            top: 12px;
+            left: 70%;
+            /* transform: translateX(-50%); */
+            display: none;
+            z-index: 9999;
+            padding: 12px 22px;
+            font-size: 24px;
+            background: #222;
+            color: #0f0;
+            border: 1px solid #0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        /* 按下效果 */
+        #loadAllBtn:active {
+            background: #333;
+        }
+
+        /* 移动端放大按钮 */
+        @media (max-width: 768px) {
+            #loadAllBtn {
+                padding: 18px 35px;
+                font-size: 24px;
+                border-radius: 12px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="log">Loading…</div>
+    <button id="loadAllBtn">显示完整日志</button>
+
+    <script>
+        // ------------------------------
+        // 读取 URL 参数 ?file=xxx
+        // ------------------------------
+        const params = new URLSearchParams(window.location.search);
+        let logFile = params.get("file");
+
+        // 若未指定，使用默认日志文件
+        if (!logFile) {
+            logFile = "/text/default.log";
+
+        }
+
+        console.log("Using log:", logFile);
+
+        const logDiv = document.getElementById("log");
+        const loadAllBtn = document.getElementById("loadAllBtn");
+
+        let lastSize = 0;
+        let autoScroll = true;
+
+        // ------------------------------
+        // 滚动逻辑：判断顶部、底部
+        // ------------------------------
+        logDiv.addEventListener("scroll", () => {
+            const atBottom =
+                logDiv.scrollTop + logDiv.clientHeight >= logDiv.scrollHeight - 5;
+
+            autoScroll = atBottom;
+
+            const atTop = logDiv.scrollTop <= 5;
+            loadAllBtn.style.display = atTop ? 'block' : 'none';
+        });
+
+        // ------------------------------
+        // 日志内容着色
+        // ------------------------------
+        function colorize(text) {
+            return text
+                .replace(/(DONE|Success|success)/g, '<span class="log-success">$1</span>')
+                .replace(/(ERROR|Error|error)/g, '<span class="log-error">$1</span>')
+                .replace(/(WARN|Warning|warning)/g, '<span class="log-warn">$1</span>')
+                .replace(/(INFO|Info)/g, '<span class="log-info">$1</span>');
+        }
+
+        // 将增量内容添加到 log 区域
+        function appendColored(newText) {
+            logDiv.innerHTML += colorize(newText);
+        }
+
+        // ------------------------------
+        // 初次加载（只读取尾部200行）
+        // ------------------------------
+        function loadInitial() {
+            fetch(logFile + "?ts=" + Date.now())
+                .then(res => res.text())
+                .then(text => {
+                    const lines = text.split("\n");
+                    const tail = lines.slice(-200).join("\n");
+
+                    logDiv.innerHTML = colorize(tail);
+                    lastSize = text.length;
+
+                    logDiv.scrollTop = logDiv.scrollHeight;
+                })
+                .catch(err => {
+                    logDiv.textContent = "Failed to load log:\n" + err;
+                });
+        }
+
+        // ------------------------------
+        // 增量读取（尾部追加）
+        // ------------------------------
+        function fetchIncrement() {
+            fetch(logFile, {
+                headers: { "Range": `bytes=${lastSize}-` }
+            })
+                .then(res => {
+                    // 416：文件被清空或轮转
+                    if (res.status === 416) {
+                        lastSize = 0;
+                        loadInitial();
+                        return null;
+                    }
+                    if (res.status !== 206) return null;
+
+                    return res.arrayBuffer();
+                })
+                .then(buffer => {
+                    if (!buffer) return;
+
+                    lastSize += buffer.byteLength;
+                    const text = new TextDecoder('utf-8').decode(buffer);
+
+                    appendColored(text);
+
+                    if (autoScroll) {
+                        logDiv.scrollTop = logDiv.scrollHeight;
+                    }
+                });
+        }
+
+        // ------------------------------
+        // 点击按钮：加载完整文件
+        // ------------------------------
+        loadAllBtn.addEventListener('click', () => {
+            fetch(logFile + "?ts=" + Date.now())
+                .then(res => res.text())
+                .then(text => {
+                    logDiv.innerHTML = colorize(text);
+                    lastSize = text.length;
+
+                    logDiv.scrollTop = 0; // 显示文件顶部
+                    loadAllBtn.style.display = 'none';
+                });
+        });
+
+        // ------------------------------
+        // 启动
+        // ------------------------------
+        loadInitial();
+        setInterval(fetchIncrement, 20000); // 20秒增量刷新
+
+    </script>
+</body>
+
+</html>
