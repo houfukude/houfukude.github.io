@@ -1,6 +1,6 @@
 # 关于本博客
 
-> update 2022-05-14 17:55:00
+> update 2025-12-06 21:00:00
 
 <!--media-->
 
@@ -44,7 +44,7 @@
 -   **markd 扩展:支持图像调整大小**
 
     展示图片可赋予 `宽高属性` 使用方式如下：
-    
+
     ```
     ![](notifications.jpg "=100px,20px")
     ![](notifications.jpg "=100rem,20vh")
@@ -131,7 +131,7 @@
 
     > PS 目前使用的还是比较初级,有需要可以查看 `pre_commit.py`
 
-    > https://blog.houfukude.eu.org/pre-commit.py
+    > [https://blog.houfukude.eu.org/pre-commit.py](/textReader.html?file=/pre-commit.py)
 
     不过现在写文章可以更加专注内容 (笑 , 创建一个 md ,然后在提交 github 之前 运行一下
 
@@ -144,6 +144,14 @@
     执行效果
 
     ![pre_commit.jpg](https://s2.loli.net/2022/02/06/UkDsFjSVqGu2i1L.jpg)
+
+-   **sakana-box**
+
+    来自 https://github.com/itorr/sakana 的 `石蒜模拟器` 对就是页面右下角那个玩意
+
+-   **textReader.html**
+
+    本来是打算搞一个日志滚动获取的东西的，突然发现也能作为一个简陋的文本查看页面。比如前面的 [https://blog.houfukude.eu.org/pre-commit.py](/textReader.html?file=/pre-commit.py) 就是最好的实践。
 
 ## TODO LIST
 
