@@ -29,6 +29,9 @@
 <!--add new article here 通过标识符 `ARTICLE` 自动识别-->
 <!--ARTICLE-->
 
+## [octop 自建踩坑实录：官方镜像改造成真能用的样子](index.html?p=Octop_Docker) 
+2026-10-13 22:52:19
+
 ## [电信 TY1608 Armbian 折腾踩坑日志](index.html?p=TY1608_Armbian) 
 2025-07-22 16:24:57
 
