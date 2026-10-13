@@ -52,21 +52,29 @@ session.headers.update({
 
 def find_online_exist():
     '''找到现在已经存在的评论'''
-    response = session.get(URL)
     exist_labels = []
-    if response.status_code == 200:
+    # GitHub 默认每页只返回 30 条, 必须翻页否则会漏掉旧文章导致重复创建 issue
+    params = {'state': 'all', 'per_page': 100, 'page': 1}
+    while True:
+        response = session.get(URL, params=params)
+        if response.status_code != 200:
+            print('[ERRO] Response:', response.content)
+            print('[ERRO] 拉取 issue 列表失败, 请检查 .env 中的 GITHUB_TOKEN 是否有效/过期')
+            return None
         data = response.json()
-        print('[INFO] 找到 %d 个已存在的 issue' % len(data))
+        print('[INFO] 第 %d 页找到 %d 个已存在的 issue' %
+              (params['page'], len(data)))
         for each in data:
             for label in each["labels"]:
                 l_name = label["name"]
                 exist_labels.append(l_name)
-        # 去重
-        exist_labels = list(dict.fromkeys(exist_labels))
-        return exist_labels
-    else:
-        print('[ERRO] Response:', response.content)
-        return []
+        if len(data) < params['per_page']:
+            break
+        params['page'] += 1
+    # 去重
+    exist_labels = list(dict.fromkeys(exist_labels))
+    print('[INFO] 共找到 %d 个已存在的标签' % len(exist_labels))
+    return exist_labels
 
 
 def create_issue(id, title):
@@ -155,7 +163,13 @@ if __name__ == "__main__":
     # else:
     #     result = create_issue(args.id, args.title)
     #     exit(result)
+    if not USERNAME or not TOKEN or not TOOL:
+        print('[ERRO] 请检查 .env 中的 GITHUB_USER / GITHUB_TOKEN / TOOL 变量')
+        exit(1)
     exist_labels = find_online_exist()
+    if exist_labels is None:
+        print('[ERRO] 无法获取 issue 列表, 已中止 (认证失败或网络异常)')
+        exit(1)
     if not exist_labels:
         print("[INFO] 没有找到已存在的 issue")
         exit(0)
