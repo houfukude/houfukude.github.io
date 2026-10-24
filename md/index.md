@@ -16,9 +16,11 @@
 
 本 Blog 使用 `python3 -m http.server` 作为本地调试展示页面
 
+本 Blog 前端基于 [MDUI](https://www.mdui.org/)
+
 本 Blog 内容采用 [markdown](https://markdown.com.cn/basic-syntax/) 进行内容书写
 
-本 Blog 内容采用 [Prettiter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) 进行格式化
+本 Blog 内容采用 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) 进行格式化
 
 本 Blog 评论采用 [Gitalk](https://github.com/gitalk/gitalk) 进行评论管理
 

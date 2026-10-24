@@ -1,6 +1,6 @@
 # 关于本博客
 
-> update 2025-12-06 21:00:00
+> update 2026-10-24 23:00:00
 
 <!--media-->
 
@@ -25,7 +25,7 @@
 
 于是就考虑在浏览器端不安装插件就能*优雅*浏览的方案.
 
-再到后来,搭在 Google Cloud 的独立博客范围内不了,~~最后才发现是要开付费账户才能使用数据库([BigQuery](https://cloud.google.com/bigquery))~~
+再到后来,搭在 Google Cloud 的独立博客访问不了了,~~最后才发现是要开付费账户才能使用数据库([BigQuery](https://cloud.google.com/bigquery))~~
 
 就一咬牙一跺脚,就进行了浩浩荡荡的博客迁移.
 
@@ -41,7 +41,7 @@
 
     也因为历史遗留问题 `nginx autoindex` 所有很多东西都是通过 js 动态注入的
 
--   **markd 扩展:支持图像调整大小**
+-   **marked 扩展:支持图像调整大小**
 
     展示图片可赋予 `宽高属性` 使用方式如下：
 
@@ -54,9 +54,9 @@
 
     参考 [Support image resizing](https://github.com/markedjs/marked/issues/339#issuecomment-726052911)
 
--   **扩展各类流程图支持**
+-   **扩展各类图表支持**
 
-    本项目支持三种表格 `flow` , `sequence`, `mermaid` 转换成 svg 图 展示
+    本项目支持三种图表 `flow` , `sequence`, `mermaid` 转换成 svg 图 展示
 
     ## flow 图
 
@@ -153,6 +153,27 @@
 
     本来是打算搞一个日志滚动获取的东西的，突然发现也能作为一个简陋的文本查看页面。比如前面的 [https://blog.houfukude.eu.org/pre-commit.py](/textReader.html?file=/pre-commit.py) 就是最好的实践。
 
+## 2026 年 10 月的重制
+
+> 又是一时兴起,把前端整个推倒重来了一遍 Vibe Coding 还是太权威了 下面是总设计师大肥鱼的总结
+
+```
+样式表从头写过,index.html 也顺手补齐成完整的页面(以前是片段式的,全靠浏览器容错).
+
+配色换成一套青绿,顶栏加了毛玻璃,首页的列表改成卡片,正文两侧留白也宽松了些. 
+
+页面顶上多了条阅读进度,右下角多了回到顶部,目录会跟着滚动自动标出当前章节.
+
+性能上做了件更实际的事:几个大块头的图形库都挪到真正需要时才加载,文章里没有流程图就一个字节都不拉,首屏轻了不少. 
+
+图片也改成滚到才加载.
+
+移动端一并修了:目录抽屉以前按百分比算宽度,平板上一关关不严实,现在还给了固定值;顶栏那排文字按钮在窄屏只留图标,
+
+把宽度让给标题;手机上那个播放器以前压着顶栏,现在贴着它下沿浮着.
+
+```
+
 ## TODO LIST
 
 目前能想到继续更新方向
@@ -161,7 +182,7 @@
 
 -   ~~返回首页~~ 2022 年 3 月 7 日 已添加
 
--   **toolbar 功能** ( 当前 toobar 还是太单薄了 )
+-   **toolbar 功能** ( 当前 toolbar 还是太单薄了 ) 2026 年 10 月补了头像和播放器入口,还是不够用
 
 -   ~~友情链接~~ ( 独立博客怎么少得了友链呢,虽然现在身边已经没人折腾了 ) 2022 年 3 月 8 日 已添加
 
@@ -173,6 +194,12 @@
 
 -   前端框架 [MDUI](https://www.mdui.org/)
 
+-   Markdown 解析 [marked](https://marked.js.org/)
+
+-   代码高亮 [highlight.js](https://highlightjs.org/)
+
+-   图表渲染 [flowchart.js](http://adrai.github.io/flowchart.js/) / [js-sequence-diagrams](https://bramp.github.io/js-sequence-diagrams/) / [mermaid](https://mermaid.js.org/)
+
 -   音乐播放 [aplayer](https://aplayer.js.org/)
 
 -   本地展示 [webd](https://gwgw.ga/fidx.html#/webd/)
@@ -181,7 +208,7 @@
 
 -   内容书写 [markdown](https://markdown.com.cn/basic-syntax/)
 
--   Markdown 格式化 [Prettiter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+-   Markdown 格式化 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 -   代码格式化 [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
 
@@ -192,6 +219,8 @@
 -   旧文章迁移 [BBCode-To-Markdown](https://jondum.github.io/BBCode-To-Markdown-Converter/)
 
 -   图片托管 https://sm.ms/
+
+-   右下角挂件 [sakana](https://github.com/itorr/sakana)
 
 ## 参考文献
 

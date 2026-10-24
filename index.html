@@ -1,112 +1,131 @@
-﻿<h1 style="display: none">no_need_index</h1>
-<!-- mdui and autoindex -->
-<style>
-	/* 初始化时候的深色背景 */
-	body {
-		background: #303030 !important;
-	}
-</style>
-<!-- 用gitalk的转圈圈来帮助等待 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
-<!-- 需要用到MDUI 中的 jquery 必须前置 -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/js/mdui.min.js"></script>
-<script src="./autoindex.js"></script>
-<!--获取页面之间的传递的参数 -->
-<script type="text/javascript">
-	function getQueryString(name) {
-		var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-		var r = decodeURI(window.location.search).substr(1).match(reg);
-		if (r != null) return unescape(r[2]);
-		return 'index';
-	}
+<!DOCTYPE html>
+<html lang="zh-CN">
 
-	function page() {
-		var page = getQueryString('p');
-		init('MD', './md/' + page + '.md');
-	}
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta name="color-scheme" content="dark">
+	<meta name="theme-color" content="#17191d">
+	<meta name="description" content="侯爷的博客 —— 技术折腾记录：Android、家庭自动化、路由器、Docker 与自建服务。">
+	<title>侯爷的博客</title>
 
-	page();
-</script>
-<!-- 基于Github issue 的评论-->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script> -->
-<script async type="text/javascript">
-	var gitalk = new Gitalk({
-		clientID: '9bb1abf537bd0d6fd632',
-		clientSecret: 'be26519f099363b8bdfe8c62adc69dc73425949b',
-		repo: 'houfukude.github.io',
-		owner: 'houfukude',
-		admin: ['houfukude'],
-		id: getQueryString('p'), // Ensure uniqueness and length less than 50
-		distractionFreeMode: false, // Facebook-like distraction free mode
-	});
+	<!-- 站点图标：文件实际是 GIF89a（16×16），文件名却是 .ico。
+	     不显式声明 type 的话，浏览器会按扩展名当 ICO 解析而解码失败，
+	     表现为标签页/书签栏的站点图标消失。 -->
+	<link rel="icon" type="image/gif" href="./favicon.ico">
+	<link rel="shortcut icon" type="image/gif" href="./favicon.ico">
 
-	gitalk.render('gitalk-container');
-</script>
+	<!-- 首屏底色，避免 JS 注入 DOM 前出现白屏闪烁（与 autoindex.css 的 --bg 一致） -->
+	<style>
+		body {
+			background: #17191d !important;
+			margin: 0;
+		}
+	</style>
 
-<!-- mdui and autoindex -->
-<link rel="stylesheet" type="text/css" href="./autoindex.css" />
-<link rel="stylesheet" type="text/css" href="./github.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/css/mdui.min.css" />
-<!-- Markdown base -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-<!-- Markdown base -->
+	<!-- 关键样式延迟加载：正文与评论 -->
+	<link rel="preload" href="gitalk.css?v=20261024o" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/dark.min.css" as="style"
+		onload="this.onload=null;this.rel='stylesheet'">
+	<!-- APlayer 的样式必须和它的 JS 同步到位：
+	     样式缺失时 .aplayer 高度会塔陷，播放器看起来“不存在” -->
+	<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" as="style"
+		onload="this.onload=null;this.rel='stylesheet'">
+	<noscript>
+		<link rel="stylesheet" href="gitalk.css?v=20261024o">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/dark.min.css">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+	</noscript>
 
-<!-- flow for Markdown -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/flowchart/1.13.0/flowchart.min.js"></script>
-<!-- flow for Markdown -->
+	<!-- mdui 提供图标字体与基础布局 -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/css/mdui.min.css" />
+	<link rel="stylesheet" type="text/css" href="./github.css?v=20261024o" />
+	<!-- 自定义样式必须最后加载，才能覆盖上面两层 -->
+	<link rel="stylesheet" type="text/css" href="./autoindex.css?v=20261024o" />
+</head>
 
-<!-- sequence for Markdown -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
-<!-- sequence for Markdown -->
+<body>
+	<!-- autoindex.js 的 AI 模式据此判断是否需要注入目录列表 -->
+	<h1 style="display: none">no_need_index</h1>
 
-<!-- mermaid for Markdown -->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.10/mermaid.min.js"></script>
-<!-- mermaid for Markdown -->
+	<noscript>
+		<div style="padding: 24px; line-height: 1.8; color: #dfe3e8;">
+			<h2>需要 JavaScript</h2>
+			<p>本博客的页面与目录由 <code>autoindex.js</code> 在浏览器端渲染，关闭 JavaScript 后无法显示内容。</p>
+			<p>文章原文可直接访问 <a href="./md/" style="color: #4dd0a7;">/md/</a> 目录下的 markdown 文件。</p>
+		</div>
+	</noscript>
 
-<!-- music player -->
+	<!-- 渲染依赖：必须在 autoindex.js 之前就绪 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/js/mdui.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+	<!-- APlayer 改回静态加载：它依赖 CSS 与 JS 同时就绪，
+	     按需加载时若样式后到，容器高度会塔陷。体积只有 59KB+12.5KB，
+	     不值得为它承担时序风险。（autoindex.js 仍保留 ensureAPlayer 作为兜底） -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 
-<script async src="//cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
-<!-- music player -->
+	<script src="./autoindex.js?v=20261024o"></script>
 
-<!--访问统计-->
-<script async src="//cdnjs.cloudflare.com/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script>
+	<!--获取页面之间的传递的参数 -->
+	<script type="text/javascript">
+		function getQueryString(name) {
+			var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			var r = decodeURI(window.location.search).substr(1).match(reg);
+			if (r != null) return unescape(r[2]);
+			return 'index';
+		}
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SF2XM9DZ8V"></script>
-<script async>
-	window.dataLayer = window.dataLayer || [];
+		function page() {
+			var page = getQueryString('p');
+			init('MD', './md/' + page + '.md');
+		}
 
-	function gtag() {
-		dataLayer.push(arguments);
-	}
-	gtag('js', new Date());
+		page();
+	</script>
 
-	gtag('config', 'G-SF2XM9DZ8V');
-</script>
-<script src="//cdn.jsdelivr.net/npm/sakana"></script>
-<script>
-	Sakana.setMute(false);
-	Sakana.init({
-		el: ".sakana-box", // 启动元素 node 或 选择器
-		scale: 0.5, // 缩放倍数
-		inertia: 0.0001,
-		decay: 1,
-		canSwitchCharacter: true, // 允许换角色
-	});
-</script>
-<!-- CSS 延迟加载 -->
-<link rel="preload" href="gitalk.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/dark.min.css" as="style"
-	onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" as="style"
-	onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-	<link rel="stylesheet" href="gitalk.css">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/dark.min.css">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" />
-</noscript>
-<!-- 可以将本文件命名成 index.html 然后扔到目录里 -->
+	<!-- 基于Github issue 的评论 -->
+	<script async type="text/javascript">
+		var gitalk = new Gitalk({
+			clientID: '9bb1abf537bd0d6fd632',
+			clientSecret: 'be26519f099363b8bdfe8c62adc69dc73425949b',
+			repo: 'houfukude.github.io',
+			owner: 'houfukude',
+			admin: ['houfukude'],
+			id: getQueryString('p'), // Ensure uniqueness and length less than 50
+			distractionFreeMode: false, // Facebook-like distraction free mode
+		});
+
+		gitalk.render('gitalk-container');
+	</script>
+
+	<!--访问统计-->
+	<script async src="//cdnjs.cloudflare.com/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SF2XM9DZ8V"></script>
+	<script async>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+
+		gtag('js', new Date());
+
+		gtag('config', 'G-SF2XM9DZ8V');
+	</script>
+
+	<!--
+		以下资源仍为按需加载，由 autoindex.js 在真正需要时注入（首屏节省约 1.7MB）：
+		raphael + flowchart      → 文章含 ```flow``` 代码块时
+		snap.svg + underscore + js-sequence-diagrams → 含 ```sequence``` 时
+		mermaid 8.13             → 含 ```mermaid``` 时（单个近 1MB，收益最大）
+		sakana                   → 主线程空闲时
+	-->
+
+	<!-- 可以将本文件命名成 index.html 然后扔到目录里 -->
+</body>
+
+</html>
